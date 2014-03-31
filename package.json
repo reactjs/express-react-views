@@ -1,0 +1,19 @@
+{
+  "name": "express-react-views",
+  "version": "0.1.0",
+  "description": "This is an Express view engine which renders React components on server. It renders static markup and *does not* support mounting those views on the client.",
+  "keywords": ["express", "view engine", "react"],
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Paul O’Shannessy <paul@oshannessy.com>",
+  "license": "BSD-3-Clause",
+  "dependencies": {
+    "envify": "^1.2.1",
+    "react": "^0.10.0",
+    "react-tools": "^0.10.0",
+    "node-jsx": "^0.10.0",
+    "js-beautify": "^1.4.2"
+  }
+}
