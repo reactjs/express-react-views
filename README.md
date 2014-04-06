@@ -19,8 +19,26 @@ npm install express-react-views
 var app = express();
 
 app.set('view engine', 'jsx');
-app.engine('jsx', require('express-react-views').__express);
+app.engine('jsx', require('express-react-views').createEngine());
 ```
+
+### Options
+
+Beginning with v0.2, you can now pass options in when creating your engine.
+
+option | values | default
+-------|--------|--------
+`jsx.harmony` | `true`: enable a subset of ES6 features | `false`
+`jsx.extension` | any file extension with leading `.` | `".jsx"`
+`doctype` | any string that can be used as [a doctype](http://en.wikipedia.org/wiki/Document_type_declaration), this will be prepended to your document | `"<!DOCTYPE html>"`
+
+The defaults are sane, but just in case you want to change something, here's how it would look:
+
+```js
+var options = { jsx: { harmony: true } };
+app.engine('jsx', require('express-react-views').createEngine(options))
+```
+
 
 ### Views
 
