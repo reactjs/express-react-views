@@ -19,7 +19,7 @@ var app = express();
 app.set('port', process.env.PORT || 3000);
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jsx');
-app.engine('jsx', reactViews.__express);
+app.engine('jsx', reactViews.createEngine({jsx: {harmony: true}}));
 app.use(express.favicon());
 app.use(express.logger('dev'));
 app.use(express.bodyParser());
