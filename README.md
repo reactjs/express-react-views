@@ -140,8 +140,16 @@ All "locals" are exposed to your view in `this.props`. These should work identic
 
 * I'm saying it again to avoid confusion: this does not do anything with React in the browser. This is *only* a solution for server-side rendering.
 * This currently uses `require` to access your views. This means that contents are cached for the lifetime of the server process. You need to restart your server when making changes to your views.
-* React & JSX have their own rendering caveats. For example, inline `<script>`s and `<style>`s will need to use `dangerouslySetInnerHTML={{__html: 'script content'}}`.
-* A doctype is automatically included for you since it's not possible to specify one in JSX. `<!doctype html>` is prepended to your components' output.
+* React & JSX have their own rendering caveats. For example, inline `<script>`s and `<style>`s will need to use `dangerouslySetInnerHTML={{__html: 'script content'}}`. You can take advantage of ES6 template strings here.
+
+```js
+<script dangerouslySetInnerHTML={{__html: `
+  // google analtyics
+  // is a common use
+`}} />
+```
+
+* It's not possible to specify a doctype in JSX. You can override the default HTML5 doctype in the options.
 
 [express]: http://expressjs.com/
 [react]: http://facebook.github.io/react/
