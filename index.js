@@ -9,29 +9,44 @@
 
 var React = require('react');
 var beautifyHTML = require('js-beautify').html;
+var nodeJSX = require('node-jsx');
+var _merge = require('lodash.merge');
 
-// TODO: This will result in views being cached, which kinda sucks.
-require('node-jsx').install({extension: '.jsx'});
+var DEFAULT_OPTIONS = {
+  jsx: {
+    extension: '.jsx',
+    harmony: false
+  },
+  doctype: '<!DOCTYPE html>'
+};
 
-function renderFile(filename, options, cb) {
-  try {
-    // TODO: Make it possible to specify different doctypes
-    var markup = '<!doctype html>'
-    var component = require(filename);
-    markup += React.renderComponentToStaticMarkup(component(options));
-  } catch (e) {
-    return cb(e);
+function createEngine(engineOptions) {
+  engineOptions = _merge(DEFAULT_OPTIONS, engineOptions);
+
+  // TODO: This will result in views being cached, which kinda sucks.
+  // Don't install the require until the engine is created. This lets us leave
+  // the option of using harmony features up to the consumer.
+  nodeJSX.install(engineOptions.jsx);
+
+  function renderFile(filename, options, cb) {
+    try {
+      var markup = engineOptions.doctype;
+      var component = require(filename);
+      markup += React.renderComponentToStaticMarkup(component(options));
+    } catch (e) {
+      return cb(e);
+    }
+
+    // NOTE: This will screw up some things where whitespace is important, and be
+    // subtly different than prod. Maybe make this an optional thing.
+    if (options.settings.env === 'development') {
+      markup = beautifyHTML(markup);
+    }
+
+    cb(null, markup);
   }
 
-  // NOTE: This will screw up some things where whitespace is important, and be
-  // subtly different than prod. Maybe make this an optional thing.
-  if (options.settings.env === 'development') {
-    markup = beautifyHTML(markup);
-  }
-
-  cb(null, markup);
+  return renderFile;
 }
 
-// Not really needed to be set up this way...
-module.exports.renderFile = renderFile;
-module.exports.__express = renderFile;
+exports.createEngine = createEngine;
