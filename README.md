@@ -31,6 +31,7 @@ option | values | default
 `jsx.harmony` | `true`: enable a subset of ES6 features | `false`
 `jsx.extension` | any file extension with leading `.` | `".jsx"`
 `doctype` | any string that can be used as [a doctype](http://en.wikipedia.org/wiki/Document_type_declaration), this will be prepended to your document | `"<!DOCTYPE html>"`
+`static` | `true`: render the component with `renderComponentToStaticMarkup` otherwise `renderComponentToString` | `true`
 
 The defaults are sane, but just in case you want to change something, here's how it would look:
 
