@@ -17,7 +17,8 @@ var DEFAULT_OPTIONS = {
     extension: '.jsx',
     harmony: false
   },
-  doctype: '<!DOCTYPE html>'
+  doctype: '<!DOCTYPE html>',
+  static: true
 };
 
 function createEngine(engineOptions) {
@@ -31,8 +32,10 @@ function createEngine(engineOptions) {
   function renderFile(filename, options, cb) {
     try {
       var markup = engineOptions.doctype;
-      var component = require(filename);
-      markup += React.renderComponentToStaticMarkup(component(options));
+      var component = require(filename)(options);
+
+      if (engineOptions.static) markup += React.renderComponentToStaticMarkup(component);
+      else markup += React.renderComponentToString(component);
     } catch (e) {
       return cb(e);
     }
