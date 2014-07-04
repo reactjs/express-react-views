@@ -23,10 +23,11 @@ var DEFAULT_OPTIONS = {
 function createEngine(engineOptions) {
   engineOptions = _merge(DEFAULT_OPTIONS, engineOptions);
 
-  // TODO: This will result in views being cached, which kinda sucks.
   // Don't install the require until the engine is created. This lets us leave
   // the option of using harmony features up to the consumer.
   nodeJSX.install(engineOptions.jsx);
+
+  var moduleDetectRegEx = new RegExp('\\' + engineOptions.jsx.extension + '$');
 
   function renderFile(filename, options, cb) {
     try {
@@ -37,10 +38,19 @@ function createEngine(engineOptions) {
       return cb(e);
     }
 
-    // NOTE: This will screw up some things where whitespace is important, and be
-    // subtly different than prod. Maybe make this an optional thing.
     if (options.settings.env === 'development') {
+      // NOTE: This will screw up some things where whitespace is important, and be
+      // subtly different than prod. Maybe make this an optional thing.
       markup = beautifyHTML(markup);
+
+      // Remove all files from the module cache that use our extension. If we're
+      // using .js, this could be sloooow. On the plus side, we can now make changes
+      // to our views without needing to restart the server.
+      Object.keys(require.cache).forEach(function(module) {
+        if (moduleDetectRegEx.test(require.cache[module].filename)) {
+          delete require.cache[module];
+        }
+      });
     }
 
     cb(null, markup);
