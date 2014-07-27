@@ -18,10 +18,9 @@
   },
   "license": "BSD-3-Clause",
   "dependencies": {
-    "envify": "^1.2.1",
-    "react": "^0.10.0",
-    "react-tools": "^0.10.0",
-    "node-jsx": "^0.10.0",
+    "react": "^0.11.1",
+    "react-tools": "^0.11.1",
+    "node-jsx": "^0.11.0",
     "js-beautify": "^1.4.2",
     "lodash.merge": "^2.4.1"
   }
