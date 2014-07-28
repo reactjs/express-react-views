@@ -17,8 +17,10 @@
     "url": "https://github.com/reactjs/express-react-views.git"
   },
   "license": "BSD-3-Clause",
+  "peerDependencies": {
+    "react": "^0.11.1"
+  },
   "dependencies": {
-    "react": "^0.11.1",
     "react-tools": "^0.11.1",
     "node-jsx": "^0.11.0",
     "js-beautify": "^1.4.2",
