@@ -8,7 +8,6 @@
  */
 
 var React = require('react');
-var beautifyHTML = require('js-beautify').html;
 var nodeJSX = require('node-jsx');
 var _merge = require('lodash.merge');
 
@@ -39,10 +38,6 @@ function createEngine(engineOptions) {
     }
 
     if (options.settings.env === 'development') {
-      // NOTE: This will screw up some things where whitespace is important, and be
-      // subtly different than prod. Maybe make this an optional thing.
-      markup = beautifyHTML(markup);
-
       // Remove all files from the module cache that use our extension. If we're
       // using .js, this could be sloooow. On the plus side, we can now make changes
       // to our views without needing to restart the server.
