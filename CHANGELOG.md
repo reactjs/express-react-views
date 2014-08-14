@@ -1,6 +1,18 @@
+# v0.5 (2014-08-14)
+
+* Move React to `peerDependencies`
+* Stop beautifying code without permission. There is now an option to do this.
+
+
+# v0.4 (2014-07-26)
+
+* Update React dependency to v0.11.1+
+
+
 # v0.3 (2014-07-04)
 
 * The module cache is cleared of files matching the specified extension at the end of each render. This allows views to be modified without restarting the server.
+
 
 # v0.2 (2014-04-05)
 
