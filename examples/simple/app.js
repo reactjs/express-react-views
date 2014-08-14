@@ -9,9 +9,9 @@ var user = require('./routes/user');
 var http = require('http');
 var path = require('path');
 
-// Use local requires to use live changes.
-// require('react-express-views')
-var reactViews = require('../../')
+// This should refer to the local React and gets installed via `npm install` in
+// the example.
+var reactViews = require('express-react-views')
 
 var app = express();
 
