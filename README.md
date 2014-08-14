@@ -11,7 +11,7 @@ This is intended to be used as a replacement for existing server-side view solut
 npm install express-react-views react
 ```
 
-**Node:** You must explicitly install `react` as a dependency. Starting in v0.5, `react` is a peer dependency here. This is to avoid issues that may come when using incompatible versions.
+**Note:** You must explicitly install `react` as a dependency. Starting in v0.5, `react` is a peer dependency here. This is to avoid issues that may come when using incompatible versions.
 
 ### Add it to your app.
 
