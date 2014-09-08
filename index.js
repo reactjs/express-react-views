@@ -31,10 +31,18 @@ function createEngine(engineOptions) {
   var moduleDetectRegEx = new RegExp('\\' + engineOptions.jsx.extension + '$');
 
   function renderFile(filename, options, cb) {
+    var component = require(filename);
+    var markup;
     try {
-      var markup = engineOptions.doctype;
-      var component = require(filename);
-      markup += React.renderComponentToStaticMarkup(component(options));
+      if( engineOptions.pre && engineOptions.post ){
+        // jx: string concat is faster then regex replace
+        markup = engineOptions.pre + 
+                     React.renderComponentToStaticMarkup(component(options)) +
+                     engineOptions.post;
+      }else{
+        markup = engineOptions.doctype;
+        markup += React.renderComponentToStaticMarkup(component(options));
+      }
     } catch (e) {
       return cb(e);
     }
