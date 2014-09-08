@@ -32,9 +32,17 @@ function createEngine(engineOptions) {
 
   function renderFile(filename, options, cb) {
     try {
-      var markup = engineOptions.doctype;
       var component = require(filename);
-      markup += React.renderComponentToStaticMarkup(component(options));
+      var markup;
+      if( engineOptions.pre && engineOptions.post ){
+        // jx: string concat is faster then regex replace
+        markup = engineOptions.pre + 
+                     React.renderComponentToStaticMarkup(component(options)) +
+                     engineOptions.post;
+      }else{
+        markup = engineOptions.doctype;
+        markup += React.renderComponentToStaticMarkup(component(options));
+      }
     } catch (e) {
       return cb(e);
     }
