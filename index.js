@@ -31,9 +31,9 @@ function createEngine(engineOptions) {
   var moduleDetectRegEx = new RegExp('\\' + engineOptions.jsx.extension + '$');
 
   function renderFile(filename, options, cb) {
-    var component = require(filename);
-    var markup;
     try {
+      var component = require(filename);
+      var markup;
       if( engineOptions.pre && engineOptions.post ){
         // jx: string concat is faster then regex replace
         markup = engineOptions.pre + 
