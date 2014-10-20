@@ -1,3 +1,8 @@
+# v0.5.1 (2014-10-20)
+
+* Support common pattern of ES6 module transpilers where the component would actually be exported to `default`, not directly.
+
+
 # v0.5 (2014-08-14)
 
 * Move React to `peerDependencies`
