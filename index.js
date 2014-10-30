@@ -18,7 +18,8 @@ var DEFAULT_OPTIONS = {
     harmony: false
   },
   doctype: '<!DOCTYPE html>',
-  beautify: false
+  beautify: false,
+  static: true
 };
 
 function createEngine(engineOptions) {
@@ -36,7 +37,14 @@ function createEngine(engineOptions) {
       var component = require(filename);
       // Transpiled ES6 may export components as { default: Component }
       component = component.default || component;
-      markup += React.renderComponentToStaticMarkup(component(options));
+
+      var instance = component(options);
+
+      if (engineOptions.static) {
+        markup += React.renderComponentToStaticMarkup(instance);
+      } else {
+        markup += React.renderComponentToString(instance);
+      }
     } catch (e) {
       return cb(e);
     }
