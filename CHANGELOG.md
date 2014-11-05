@@ -1,3 +1,7 @@
+# v0.6.0 (2014-11-05)
+
+* Update to React v0.12.
+
 # v0.5.1 (2014-10-20)
 
 * Support common pattern of ES6 module transpilers where the component would actually be exported to `default`, not directly.
