@@ -18,11 +18,11 @@
   },
   "license": "BSD-3-Clause",
   "peerDependencies": {
-    "react": "^0.11.1"
+    "react": "^0.12.0"
   },
   "dependencies": {
-    "react-tools": "^0.11.1",
-    "node-jsx": "^0.11.0",
+    "react-tools": "^0.12.0",
+    "node-jsx": "^0.12.0",
     "js-beautify": "^1.4.2",
     "lodash.merge": "^2.4.1"
   }
