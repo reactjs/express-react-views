@@ -8,6 +8,6 @@
   },
   "dependencies": {
     "express": "3.3.5",
-    "react": "^0.11.1"
+    "react": "^0.12.0"
   }
 }
