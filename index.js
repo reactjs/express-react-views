@@ -10,7 +10,7 @@
 var React = require('react');
 var beautifyHTML = require('js-beautify').html;
 var nodeJSX = require('node-jsx');
-var _merge = require('lodash.merge');
+var _merge = require('lodash').merge;
 
 var DEFAULT_OPTIONS = {
   jsx: {
