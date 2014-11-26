@@ -24,6 +24,6 @@
     "react-tools": "^0.12.0",
     "node-jsx": "^0.12.0",
     "js-beautify": "^1.4.2",
-    "lodash.merge": "^2.4.1"
+    "lodash": "^2.4.1"
   }
 }
