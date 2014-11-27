@@ -11,14 +11,27 @@ var React = require('react');
 var beautifyHTML = require('js-beautify').html;
 var nodeJSX = require('node-jsx');
 var _merge = require('lodash.merge');
+var fs = require('fs');
+var reactTools = require('react-tools');
+
 
 var DEFAULT_OPTIONS = {
   jsx: {
     extension: '.jsx',
     harmony: false
   },
+  mountInClient : false,
+  reactLink: 'http://fb.me/react-with-addons-0.12.1.js',
   doctype: '<!DOCTYPE html>',
   beautify: false
+};
+
+
+function insertIntoString (originalStr, index, insertStr) {
+  if (index > 0)
+    return originalStr.substring(0, index) + insertStr + originalStr.substring(index, originalStr.length);
+  else
+    return insertStr + originalStr;
 };
 
 function createEngine(engineOptions) {
@@ -37,7 +50,51 @@ function createEngine(engineOptions) {
       // Transpiled ES6 may export components as { default: Component }
       component = component.default || component;
       component = React.createFactory(component);
-      markup += React.renderToStaticMarkup(component(options));
+      
+      if(engineOptions.mountInClient) {
+        //Render the component to the string, so that it'll be able to be mounted later
+        markup += React.renderToString(component(options));
+
+        //We'll need to use the react library to mount the component in-browser
+        var reactScriptTag = '<script src="' + engineOptions.reactLink + '"></script>';
+
+        //We need to find the position of the end of the body tag.
+        //That position is where we'll inject the js for mounting  of the react component.
+        var endOfBodyPos = markup.indexOf('</body>');
+
+        //We read in the raw jsx for the react component
+        var jsxContent = fs.readFileSync(filename).toString();
+
+        //In the JSX view, there will be a require('React') statement.
+        //We don't want this in the browser; we don't need to require react
+        //React will be loaded in the script tag, as the variable react.
+        //So we need to replace the require with a reference to the React variable
+        jsxContent = jsxContent.replace(/require\s*\(\s*['"]react['"]\s*\)/i, 'React');
+
+        //Let's transform the JSX to JS, since we don't want that to happen in-browser
+        var mountingJS = reactTools.transform(jsxContent);
+
+        //There will be a reference to module.exports in the view.
+        //This will error in-browser since 'module' isn't defined.
+        //So we define it.
+        mountingJS = '\nvar module = {};\n' + mountingJS;
+
+        //The options need to be stringified to be passed as props into the component.
+        //CAVEAT: the Settings object from Express is also passed in (and sent to client)
+        var stringifiedOptions = JSON.stringify(options);
+
+        //We have to insert code to actually mount the React component over the whole document.
+        mountingJS = mountingJS + 'React.render(React.createElement(module.exports, ' + stringifiedOptions + '), document);';
+
+        //Lets bring together the scripts that will mount the component
+        var insertScript = reactScriptTag + '\n <script>\n' + mountingJS + '\n</script>';
+
+        //We finally insert the component-mounting JS at the of the HTML body
+        markup = insertIntoString(markup, endOfBodyPos, insertScript);
+      } else{
+        markup += React.renderToStaticMarkup(component(options));
+      }
+
     } catch (e) {
       return cb(e);
     }
