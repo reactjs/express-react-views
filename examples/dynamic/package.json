@@ -1,0 +1,17 @@
+{
+  "name": "dynamic-views",
+  "version": "0.1.0",
+  "description": "Example of creating a dynamic app using express-react-views",
+  "author": "Chris Johnson <tenorviol@yahoo.com>",
+  "private": true,
+  "scripts": {
+    "preinstall": "npm install ../../",
+    "start": "make; node app.js"
+  },
+  "dependencies": {
+    "browserify": "^8.0.3",
+    "express": "^4.10.6",
+    "react": "^0.12.2",
+    "react-tools": "^0.12.2"
+  }
+}
