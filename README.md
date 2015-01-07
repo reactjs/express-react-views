@@ -49,8 +49,6 @@ app.engine('jsx', require('express-react-views').createEngine(options));
 Your views should be node modules that export a React component. Let's assume you have this file in `views/index.jsx`:
 
 ```js
-/** @jsx React.DOM */
-
 var HelloMessage = React.createClass({
   render: function() {
     return <div>Hello {this.props.name}</div>;
@@ -86,8 +84,6 @@ Simply pass the relevant props to a layout component.
 
 `views/layouts/default.jsx`:
 ```js
-/** @jsx React.DOM */
-
 var DefaultLayout = React.createClass({
   render: function() {
     return (
@@ -104,8 +100,6 @@ module.exports = DefaultLayout;
 
 `views/index.jsx`:
 ```js
-/** @jsx React.DOM */
-
 var DefaultLayout = require('./layouts/default');
 
 var HelloMessage = React.createClass({

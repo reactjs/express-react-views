@@ -1,9 +1,4 @@
-/**
- * @jsx React.DOM
- */
-
 var React = require('react');
-
 var Layout = require('./layout');
 
 // Contrived example to show how one might use Flow type annotations
