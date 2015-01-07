@@ -10,7 +10,7 @@
 var React = require('react');
 var beautifyHTML = require('js-beautify').html;
 var nodeJSX = require('node-jsx');
-var _merge = require('lodash.merge');
+var assign = require('object-assign');
 
 var DEFAULT_OPTIONS = {
   jsx: {
@@ -22,7 +22,13 @@ var DEFAULT_OPTIONS = {
 };
 
 function createEngine(engineOptions) {
-  engineOptions = _merge(DEFAULT_OPTIONS, engineOptions);
+  // Merge was nice because it did nest objects. assign doesn't. So we're going
+  // to assign the JSX options then the rest. If there were more than a single
+  // nested option, this would be really dumb. As is, it looks pretty stupid but
+  // it keeps our dependencies slim.
+  var jsxOptions = assign({}, DEFAULT_OPTIONS.jsx, engineOptions.jsx);
+  // Since we're passing an object with jsx as the key, it'll override the rest.
+  engineOptions = assign({}, DEFAULT_OPTIONS, engineOptions, {jsx: jsxOptions});
 
   // Don't install the require until the engine is created. This lets us leave
   // the option of using harmony features up to the consumer.
