@@ -1,6 +1,7 @@
-# express-react-views
+# express-react-view-engine
+This is *fork* of Express view engine(which created by @zpao).
 
-This is an [Express][express] view engine which renders [React][react] components on server. It renders static markup and *does not* support mounting those views on the client.
+This is an [Express][express] view engine which renders [React][react] components on server. It renders markup and it supports mounting those views on the client.
 
 This is intended to be used as a replacement for existing server-side view solutions, like [jade][jade], [ejs][ejs], or [handlebars][hbs].
 
@@ -8,7 +9,7 @@ This is intended to be used as a replacement for existing server-side view solut
 ## Usage
 
 ```sh
-npm install express-react-views react
+npm install express-react-view-engine react
 ```
 
 **Note:** You must explicitly install `react` as a dependency. Starting in v0.5, `react` is a peer dependency here. This is to avoid issues that may come when using incompatible versions.
@@ -83,36 +84,14 @@ exports.index = function(req, res){
 
 Simply pass the relevant props to a layout component.
 
-`views/layouts/default.jsx`:
-```js
-/** @jsx React.DOM */
-
-var DefaultLayout = React.createClass({
-  render: function() {
-    return (
-      <html>
-        <head><title>{this.props.title}</title></head>
-        <body>{this.props.children}</body>
-      </html>
-    );
-  }
-});
-
-module.exports = DefaultLayout;
-```
-
 `views/index.jsx`:
 ```js
 /** @jsx React.DOM */
 
-var DefaultLayout = require('./layouts/default');
-
 var HelloMessage = React.createClass({
   render: function() {
     return (
-      <DefaultLayout title={this.props.title}>
-        <div>Hello {this.props.name}</div>
-      </DefaultLayout>
+      <div>Hello {this.props.name}</div>
     );
   }
 });

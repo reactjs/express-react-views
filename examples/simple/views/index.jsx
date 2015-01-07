@@ -4,19 +4,19 @@
 
 var React = require('react');
 
-var Layout = require('./layout');
-
 var Index = React.createClass({
   propTypes: {
     title: React.PropTypes.string
   },
-
+  click: function () {
+    alert('It works :-p')
+  },
   render: function() {
     return (
-      <Layout title={this.props.title}>
+      <div>
         <h1>{this.props.title}</h1>
-        <p>Welcome to {this.props.title}</p>
-      </Layout>
+        <p onClick={this.click}>Welcome to {this.props.title} - <u>click me to check that React works on client.</u></p>
+      </div>
     );
   }
 });

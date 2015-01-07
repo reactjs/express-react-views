@@ -1,29 +1,43 @@
 {
-  "name": "express-react-views",
-  "version": "0.6.0",
-  "description": "This is an Express view engine which renders React components on server. It renders static markup and *does not* support mounting those views on the client.",
+  "name": "express-react-view-engine",
+  "version": "0.2.0",
+  "description": "This is *fork* of Express view engine(created by @zpao) which renders React components on server. It renders markup and support MOUNTING those views on the client.",
   "keywords": [
     "express",
     "view engine",
-    "react"
+    "react",
+    "client mount"
   ],
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Paul O’Shannessy <paul@oshannessy.com>",
+  "author": "Oleg Zemelia, Sasha Snig",
   "repository": {
     "type": "git",
-    "url": "https://github.com/reactjs/express-react-views.git"
+    "url": "https://github.com/Zemelia/express-react-view-engine.git"
   },
-  "license": "BSD-3-Clause",
+  "license": "BSD-2-Clause",
   "peerDependencies": {
     "react": "^0.12.0"
   },
   "dependencies": {
-    "react-tools": "^0.12.0",
+    "browserify": "^8.0.3",
     "node-jsx": "^0.12.0",
-    "js-beautify": "^1.4.2",
-    "lodash.merge": "^2.4.1"
-  }
+    "lodash.merge": "^2.4.1",
+    "reactify": "^0.17.1",
+    "literalify": "^0.3.0",
+    "uglifyify": "^2.6.0"
+  },
+  "contributors": [
+    "zemelia <ol.raban@gmail.com>",
+    "snig <snigkrasava@gmail.com>"
+  ],
+  "bugs": {
+    "url": "https://github.com/Zemelia/express-react-view-engine/issues"
+  },
+  "directories": {
+    "example": "examples"
+  },
+  "devDependencies": {}
 }
