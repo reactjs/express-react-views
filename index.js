@@ -15,7 +15,8 @@ var assign = require('object-assign');
 var DEFAULT_OPTIONS = {
   jsx: {
     extension: '.jsx',
-    harmony: false
+    harmony: false,
+    stripTypes: false
   },
   doctype: '<!DOCTYPE html>',
   beautify: false

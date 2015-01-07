@@ -31,6 +31,7 @@ Beginning with v0.2, you can now pass options in when creating your engine.
 option | values | default
 -------|--------|--------
 `jsx.harmony` | `true`: enable a subset of ES6 features | `false`
+`jsx.stripTypes` | `true`: strip [Flow](http://flowtype.org/) type annotations: `false`
 `jsx.extension` | any file extension with leading `.` | `".jsx"`
 `doctype` | any string that can be used as [a doctype](http://en.wikipedia.org/wiki/Document_type_declaration), this will be prepended to your document | `"<!DOCTYPE html>"`
 `beautify` | `true`: beautify markup before outputting (note, this can affect rendering due to additional whitespace) | `false`
