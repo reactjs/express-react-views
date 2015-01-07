@@ -12,15 +12,12 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": [
-    "Oleg Zemelia <ol.raban@gmail.com>",
-    "Sasha Snig <snigkrasava@gmail.com"
-  ],
+  "author": "Oleg Zemelia, Sasha Snig",
   "repository": {
     "type": "git",
     "url": "https://github.com/Zemelia/express-react-view-engine.git"
   },
-  "license": "BSD-3-Clause",
+  "license": "BSD-2-Clause",
   "peerDependencies": {
     "react": "^0.12.0"
   },
@@ -33,13 +30,14 @@
     "uglifyify": "^2.6.0"
   },
   "contributors": [
-    {
-      "name": "zemelia",
-      "email": "ol.raban@gmail.com"
-    },
-    {
-      "name": "snig",
-      "email": "snigkrasava@gmail.com"
-    }
-  ]
+    "zemelia <ol.raban@gmail.com>",
+    "snig <snigkrasava@gmail.com>"
+  ],
+  "bugs": {
+    "url": "https://github.com/Zemelia/express-react-view-engine/issues"
+  },
+  "directories": {
+    "example": "examples"
+  },
+  "devDependencies": {}
 }
