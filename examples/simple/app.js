@@ -11,7 +11,7 @@ var path = require('path');
 
 // This should refer to the local React and gets installed via `npm install` in
 // the example.
-var reactViews = require('express-react-views')
+var reactViews = require('express-react-views');
 
 var app = express();
 
@@ -19,7 +19,12 @@ var app = express();
 app.set('port', process.env.PORT || 3000);
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jsx');
-app.engine('jsx', reactViews.createEngine({jsx: {harmony: true}}));
+app.engine('jsx', reactViews.createEngine({
+  jsx: {
+    harmony: true,
+    stripTypes: true
+  }
+}));
 app.use(express.favicon());
 app.use(express.logger('dev'));
 app.use(express.bodyParser());
