@@ -6,11 +6,16 @@
  *  LICENSE file in the root directory of this source tree. An additional grant
  *  of patent rights can be found in the PATENTS file in the same directory.
  */
+var React = require('react'),
+  _merge = require('lodash.merge'),
+  browserify = require('browserify'),
+  literalify = require('literalify'),
+  reactify    = require('reactify'),
+  nodeJSX = require('node-jsx'),
+  Stream = require('stream'),
+  reactString = new Stream;
 
-var React = require('react');
-var beautifyHTML = require('js-beautify').html;
-var nodeJSX = require('node-jsx');
-var _merge = require('lodash.merge');
+reactString.writable = true;
 
 var DEFAULT_OPTIONS = {
   jsx: {
@@ -23,46 +28,53 @@ var DEFAULT_OPTIONS = {
 
 function createEngine(engineOptions) {
   engineOptions = _merge(DEFAULT_OPTIONS, engineOptions);
-
-  // Don't install the require until the engine is created. This lets us leave
-  // the option of using harmony features up to the consumer.
   nodeJSX.install(engineOptions.jsx);
-
-  var moduleDetectRegEx = new RegExp('\\' + engineOptions.jsx.extension + '$');
 
   function renderFile(filename, options, cb) {
     try {
-      var markup = engineOptions.doctype;
+      var script = markup = '';
       var component = require(filename);
-      // Transpiled ES6 may export components as { default: Component }
-      component = component.default || component;
       component = React.createFactory(component);
-      markup += React.renderToStaticMarkup(component(options));
+      markup = engineOptions.doctype;
+      markup += '<html><head></head><body id="body">';
+      markup += React.renderToString(component(options));
+
+      var b = browserify();
+      b.require(filename, {expose: 'MyApp'})
+        .transform(reactify)
+        .transform({global: true}, literalify.configure({react: 'window.React'}))
+        .transform({global: true}, 'uglifyify')
+        .bundle().pipe(reactString);
+
+      reactString.write = function(buf) {
+        script += buf.toString();
+      };
+      reactString.end = function(buf) {
+        if (arguments.length) {
+          reactString.write(buf);
+        }
+        if (script.length) {
+          markup += '<script src=//fb.me/react-0.12.2.min.js></script>';
+          markup += '<script>' + script +
+          'var MyApp = React.createFactory(require("MyApp"));' +
+          'React.render(MyApp(' + safeStringify(options) + '), document.getElementById("body"))' +
+          '</script>';
+          markup += '</body></html>'
+        }
+        reactString.writable = false;
+        cb(null, markup);
+      };
+      reactString.destroy = function() {
+        reactString.writable = false;
+      }
     } catch (e) {
       return cb(e);
     }
-
-    if (engineOptions.beautify) {
-      // NOTE: This will screw up some things where whitespace is important, and be
-      // subtly different than prod.
-      markup = beautifyHTML(markup);
-    }
-
-    if (options.settings.env === 'development') {
-      // Remove all files from the module cache that use our extension. If we're
-      // using .js, this could be sloooow. On the plus side, we can now make changes
-      // to our views without needing to restart the server.
-      Object.keys(require.cache).forEach(function(module) {
-        if (moduleDetectRegEx.test(require.cache[module].filename)) {
-          delete require.cache[module];
-        }
-      });
-    }
-
-    cb(null, markup);
   }
-
   return renderFile;
+}
+function safeStringify(obj) {
+  return JSON.stringify(obj).replace(/<\/script/g, '<\\/script').replace(/<!--/g, '<\\!--')
 }
 
 exports.createEngine = createEngine;
