@@ -22,7 +22,7 @@ npm install express-react-view-engine react
 var app = express();
 
 app.set('view engine', 'jsx');
-app.engine('jsx', require('express-react-views').createEngine());
+app.engine('jsx', require('express-react-view-engine').createEngine());
 ```
 
 ### Options
@@ -120,7 +120,6 @@ All "locals" are exposed to your view in `this.props`. These should work identic
 
 ## Caveats
 
-* I'm saying it again to avoid confusion: this does not do anything with React in the browser. This is *only* a solution for server-side rendering.
 * This currently uses `require` to access your views. This means that contents are cached for the lifetime of the server process. You need to restart your server when making changes to your views. **In development, we clear your view files from the cache so you can simply refresh your browser to see changes.**
 * React & JSX have their own rendering caveats. For example, inline `<script>`s and `<style>`s will need to use `dangerouslySetInnerHTML={{__html: 'script content'}}`. You can take advantage of ES6 template strings here.
 
