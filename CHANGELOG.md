@@ -1,3 +1,9 @@
+# v0.7.0 (2015-01-07)
+
+* Add support for `stripTypes` option
+* Use `object-assign` instead of `lodash.merge`
+* Update js-beautify
+
 # v0.6.0 (2014-11-05)
 
 * Update to React v0.12.
