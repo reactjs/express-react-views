@@ -1,6 +1,6 @@
 {
   "name": "express-react-view-engine",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "This is *fork* of Express view engine(created by @zpao) which renders React components on server. It renders markup and support MOUNTING those views on the client.",
   "keywords": [
     "express",
