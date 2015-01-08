@@ -39,11 +39,13 @@ module.exports = React.createClass({
      * The third is what's going on with the `replace` function below.
      * Because we're in a script tag context,
      * we cannot allow the closing tag, "</script>", in our output.
-     * This is an old trick that breaks up the work "script" into a string contatenation.
+     * This is an old trick that breaks up the word "script" into a string contatenation.
      * It works here because json always uses double quotes to escape strings.
      *
      * Properly escaping user data for raw output in html is tricky business.
-     * Know what you are doing and good luck.
+     * Whenever possible, avoid it.
+     * If avoidance is impossible,
+     * know what you are doing and good luck.
      */
     var initScript = 'main(' + JSON.stringify(data).replace(/script/g, 'scr"+"ipt') + ')';
 
