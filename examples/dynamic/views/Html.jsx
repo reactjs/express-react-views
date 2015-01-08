@@ -1,5 +1,5 @@
 var React = require('react');
-var Content = require('./Content');
+var Content = require('./Content.jsx');
 
 module.exports = React.createClass({
 

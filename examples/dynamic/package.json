@@ -6,12 +6,13 @@
   "private": true,
   "scripts": {
     "preinstall": "npm install ../../",
-    "start": "make; node app.js"
+    "start": "browserify -t reactify views/main.jsx -o public/main.js; node app.js"
   },
   "dependencies": {
     "browserify": "^8.0.3",
     "express": "^4.10.6",
     "react": "^0.12.2",
-    "react-tools": "^0.12.2"
+    "react-tools": "^0.12.2",
+    "reactify": "^0.17.1"
   }
 }
