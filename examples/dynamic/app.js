@@ -1,10 +1,14 @@
 var express = require('express');
-var reactViews = require('express-react-views')
+var reactViews = require('express-react-views');
 
 var app = express();
 
-app.set('view engine', 'jsx');
-app.engine('jsx', reactViews.createEngine({ jsx: { harmony: true } }));
+app.set('view engine', 'js');
+app.engine('js', reactViews.createEngine({
+  jsx: {
+    extension: '.js'
+  }
+}));
 
 app.use(express.static(__dirname + '/public'));
 
