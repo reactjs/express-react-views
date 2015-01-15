@@ -15,8 +15,7 @@ var React = require('react'),
   Stream = require('stream'),
   reactString = new Stream,
   uglifyify = require('uglifyify'),
-  crypto = require('crypto'),
-  cacheHash = {};
+  crypto = require('crypto');
 
 reactString.writable = true;
 
@@ -38,9 +37,8 @@ function createEngine(engineOptions) {
     var shasum = crypto.createHash('sha1');
     var optionsString = JSON.stringify(options);
     shasum.update(filename + optionsString);
-    var hash = shasum.digest('hex');
-
-    if (!cacheHash[hash]) {
+    var cacheKey = shasum.digest('hex');
+    if (!renderFile.cache[cacheKey]) {
       try {
         var script = markup = '';
         var component = require(filename);
@@ -73,8 +71,8 @@ function createEngine(engineOptions) {
           reactString.writable = false;
 
           // Add to cache.
-          cacheHash[hash] = markup;
-          cb(null, markup);
+          renderFile.cache[cacheKey] = markup;
+          return cb(null, renderFile.cache[cacheKey]);
         };
         reactString.destroy = function () {
           reactString.writable = false;
@@ -82,10 +80,14 @@ function createEngine(engineOptions) {
       } catch (e) {
         return cb(e);
       }
-    } else {
-      cb(null, cacheHash[hash]);
+    }
+    else {
+      return cb(null, renderFile.cache[cacheKey]);
     }
   }
+
+  // cache storage
+  renderFile.cache = {}
   return renderFile;
 }
 function safeStringify(obj) {
