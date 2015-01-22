@@ -19,13 +19,33 @@ var React = require('react'),
 
 reactString.writable = true;
 
+/*
+ * jsx: {
+ *   extension: string, // any file extension with leading ".", ".jsx" is default.
+ *   harmony: boolean // true: enable a subset of ES6 features
+ * },
+ * doctype: string,Page doctype. // any string that can be used as a doctype, this will be prepended to your document
+ * reactJsSrc: string, // path to reactJs library.
+ * headContent: string, // any data that can be in <head> tag.
+ * headTitle: string, // head <title> tag data.
+ * htmlTagAttrs: string, // attributes for <html> tag, must start with empty line " ".
+ * bodyTagAttrs: string, // attributes for <body> tag, must start with empty line " ".
+ * componentOnly: boolean, // return whole page with <html>,<head>,<body> elements or only react component, by default return whole page.
+ * reactParentId: string // id for parent of react component on client render.
+ */
 var DEFAULT_OPTIONS = {
   jsx: {
     extension: '.jsx',
     harmony: false
   },
   doctype: '<!DOCTYPE html>',
-  beautify: false
+  reactJsSrc: '//fb.me/react-0.12.2.min.js',
+  headContent: '',
+  headTitle: '',
+  htmlTagAttrs: '',
+  bodyTagAttrs: ' id="body"',
+  componentOnly: false,
+  reactParentId: 'body'
 };
 
 function createEngine(engineOptions) {
@@ -40,48 +60,40 @@ function createEngine(engineOptions) {
     var cacheKey = shasum.digest('hex');
     if (!renderFile.cache[cacheKey]) {
       try {
-        var script = markup = '';
-        var component = require(filename);
+        var component = require(filename),
+            componentOptions = _merge(engineOptions, options);
         component = React.createFactory(component);
-        markup = engineOptions.doctype;
-        markup += '<html><head></head><body id="body">';
-        markup += React.renderToString(component(options));
+        var markup = {
+          pageMarkup: React.renderToString(component(componentOptions)),
+          AppName: 'App_' + cacheKey,
+          script: ''
+        };
         var b = browserify();
-        b.require(filename, {expose: 'MyApp'})
+        b.require(filename, {expose: markup.AppName})
           .transform(reactify)
           .transform({global: true}, literalify.configure({react: 'window.React'}))
           .transform({global: true}, uglifyify)
           .bundle().pipe(reactString);
 
         reactString.write = function (buf) {
-          script += buf.toString();
+          markup.script += buf.toString();
         };
         reactString.end = function (buf) {
           if (arguments.length) {
             reactString.write(buf);
           }
-          if (script.length) {
-            markup += '<script src=//fb.me/react-0.12.2.min.js></script>';
-            markup += '<script>' + script +
-            'var MyApp = React.createFactory(require("MyApp"));' +
-            'React.render(MyApp(' + safeStringify(options) + '), document.getElementById("body"))' +
-            '</script>';
-            markup += '</body></html>'
-          }
           reactString.writable = false;
-
           // Add to cache.
-          renderFile.cache[cacheKey] = markup;
+          renderFile.cache[cacheKey] = generateHtmlSkeleton(markup, componentOptions);
           return cb(null, renderFile.cache[cacheKey]);
         };
         reactString.destroy = function () {
           reactString.writable = false;
-        }
+        };
       } catch (e) {
         return cb(e);
       }
-    }
-    else {
+    } else {
       return cb(null, renderFile.cache[cacheKey]);
     }
   }
@@ -90,8 +102,37 @@ function createEngine(engineOptions) {
   renderFile.cache = {}
   return renderFile;
 }
+
+// Function for preventing not-safe strings output.
 function safeStringify(obj) {
   return JSON.stringify(obj).replace(/<\/script/g, '<\\/script').replace(/<!--/g, '<\\!--')
+}
+
+// Function for generate base html layout(head, body, html) tags.
+function generateHtmlSkeleton(markup, componentOptions) {
+  var html = script = '';
+  if (markup.script.length) {
+    script = '<script>' + markup.script +
+    'var ' + markup.AppName + ' = React.createFactory(require("' + markup.AppName + '"));' +
+    'React.render(' + markup.AppName + '(' + safeStringify(componentOptions) + '), document.getElementById("' + componentOptions.reactParentId + '"))' +
+    '</script>';
+  }
+  if (componentOptions.componentOnly) {
+    html += markup.pageMarkup;
+    html += script;
+    return html;
+  }
+  html += componentOptions.doctype;
+  html += '<html'+ componentOptions.htmlTagAttrs +'>';
+  html += '<head><title>' + componentOptions.headTitle + '</title>' + componentOptions.headContent + '</head>';
+  html += '<body' + componentOptions.bodyTagAttrs + '>';
+  html += markup.pageMarkup;
+  if (componentOptions.reactJsSrc.length) {
+    html += '<script src="' + componentOptions.reactJsSrc + '"></script>';
+  }
+  html += script;
+  html += '</body></html>';
+  return html;
 }
 
 exports.createEngine = createEngine;
