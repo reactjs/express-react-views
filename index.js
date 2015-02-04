@@ -23,6 +23,7 @@ var DEFAULT_OPTIONS = {
 };
 
 function createEngine(engineOptions) {
+  engineOptions = engineOptions || {};
   // Merge was nice because it did nest objects. assign doesn't. So we're going
   // to assign the JSX options then the rest. If there were more than a single
   // nested option, this would be really dumb. As is, it looks pretty stupid but
