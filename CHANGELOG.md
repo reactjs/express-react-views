@@ -1,3 +1,7 @@
+# v0.7.1 (2015-02-04)
+
+* Fix bug when calling createEngine without arguments
+
 # v0.7.0 (2015-01-07)
 
 * Add support for `stripTypes` option
