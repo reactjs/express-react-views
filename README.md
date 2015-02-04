@@ -21,7 +21,7 @@ npm install express-react-views react
 var app = express();
 
 app.set('view engine', 'jsx');
-app.engine('jsx', require('express-react-views').createEngine());
+app.engine('jsx', require('express-react-views').createEngine({ jsx: {} }));
 ```
 
 ### Options
