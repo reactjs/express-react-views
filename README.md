@@ -55,7 +55,7 @@ var HelloMessage = React.createClass({
   }
 });
 
-module.exports = HelloMessage
+module.exports = HelloMessage;
 ```
 
 ### Routes
