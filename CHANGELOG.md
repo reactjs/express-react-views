@@ -1,6 +1,12 @@
+# v0.7.2 (2015-04-06)
+
+* Update dependency to work with React v0.12 *and* v0.13
+
+
 # v0.7.1 (2015-02-04)
 
 * Fix bug when calling createEngine without arguments
+
 
 # v0.7.0 (2015-01-07)
 
@@ -8,9 +14,11 @@
 * Use `object-assign` instead of `lodash.merge`
 * Update js-beautify
 
+
 # v0.6.0 (2014-11-05)
 
 * Update to React v0.12.
+
 
 # v0.5.1 (2014-10-20)
 
