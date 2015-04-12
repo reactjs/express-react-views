@@ -35,6 +35,7 @@ option | values | default
 `jsx.extension` | any file extension with leading `.` | `".jsx"`
 `doctype` | any string that can be used as [a doctype](http://en.wikipedia.org/wiki/Document_type_declaration), this will be prepended to your document | `"<!DOCTYPE html>"`
 `beautify` | `true`: beautify markup before outputting (note, this can affect rendering due to additional whitespace) | `false`
+`static` | `true`: render markup which does not include the `data-react-checksum` or `data-reactid` fields | `true`
 
 The defaults are sane, but just in case you want to change something, here's how it would look:
 
