@@ -9,14 +9,11 @@
 
 var React = require('react');
 var beautifyHTML = require('js-beautify').html;
-var nodeJSX = require('node-jsx');
 var assign = require('object-assign');
 
 var DEFAULT_OPTIONS = {
   jsx: {
-    extension: '.jsx',
-    harmony: false,
-    stripTypes: false
+    extension: '.jsx'
   },
   doctype: '<!DOCTYPE html>',
   beautify: false
@@ -32,9 +29,7 @@ function createEngine(engineOptions) {
   // Since we're passing an object with jsx as the key, it'll override the rest.
   engineOptions = assign({}, DEFAULT_OPTIONS, engineOptions, {jsx: jsxOptions});
 
-  // Don't install the require until the engine is created. This lets us leave
-  // the option of using harmony features up to the consumer.
-  nodeJSX.install(engineOptions.jsx);
+  require('babel/register');
 
   var moduleDetectRegEx = new RegExp('\\' + engineOptions.jsx.extension + '$');
 
