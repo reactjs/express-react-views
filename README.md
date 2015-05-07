@@ -43,7 +43,7 @@ app.engine('jsx', require('express-react-views').createEngine(options));
 
 ### Views
 
-Under the hood, [Babel][babel] is used to compile your views into ES5 friendly code, using the default Babel options.  Only the files in your `views` directory (`app.set('views', __dirname + '/views')`) will be compiled.
+Under the hood, [Babel][babel] is used to compile your views into ES5 friendly code, using the default Babel options.  Only the files in your `views` directory (i.e. `app.set('views', __dirname + '/views')`) will be compiled.
 
 Your views should be node modules that export a React component. Let's assume you have this file in `views/index.jsx`:
 
