@@ -10,7 +10,6 @@
 var React = require('react');
 var beautifyHTML = require('js-beautify').html;
 var assign = require('object-assign');
-var registered = false;
 
 var DEFAULT_OPTIONS = {
   doctype: '<!DOCTYPE html>',
@@ -18,9 +17,10 @@ var DEFAULT_OPTIONS = {
 };
 
 function createEngine(engineOptions) {
-  engineOptions = assign({}, DEFAULT_OPTIONS, engineOptions || {});
-
+  var registered = false;
   var moduleDetectRegEx;
+
+  engineOptions = assign({}, DEFAULT_OPTIONS, engineOptions || {});
 
   function renderFile(filename, options, cb) {
     // Defer babel registration until the first request so we can grab the view path.
