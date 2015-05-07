@@ -4,11 +4,7 @@ var reactViews = require('express-react-views');
 var app = express();
 
 app.set('view engine', 'js');
-app.engine('js', reactViews.createEngine({
-  jsx: {
-    extension: '.js'
-  }
-}));
+app.engine('js', reactViews.createEngine());
 
 app.use(express.static(__dirname + '/public'));
 
