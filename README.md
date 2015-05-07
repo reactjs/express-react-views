@@ -158,4 +158,4 @@ All "locals" are exposed to your view in `this.props`. These should work identic
 [jade]: http://jade-lang.com/
 [ejs]: http://embeddedjs.com/
 [hbs]: https://github.com/barc/express-hbs
-[babel] https://babeljs.io/
+[babel]: https://babeljs.io/
