@@ -3,7 +3,8 @@ var async = require('async');
 var viewEngine = require('..');
 var viewOptions = {
   settings: {
-    env: 'development'
+    env: 'development',
+    views: __dirname
   }
 };
 
