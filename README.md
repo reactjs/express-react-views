@@ -20,6 +20,7 @@ npm install express-react-views react
 
 var app = express();
 
+app.set('views', __dirname + '/views');
 app.set('view engine', 'jsx');
 app.engine('jsx', require('express-react-views').createEngine());
 ```
@@ -41,6 +42,8 @@ app.engine('jsx', require('express-react-views').createEngine(options));
 
 
 ### Views
+
+Under the hood, [Babel][babel] is used to compile your views into ES5 friendly code, using the default Babel options.  Only the files in your `views` directory (`app.set('views', __dirname + '/views')`) will be compiled.
 
 Your views should be node modules that export a React component. Let's assume you have this file in `views/index.jsx`:
 
@@ -155,3 +158,4 @@ All "locals" are exposed to your view in `this.props`. These should work identic
 [jade]: http://jade-lang.com/
 [ejs]: http://embeddedjs.com/
 [hbs]: https://github.com/barc/express-hbs
+[babel] https://babeljs.io/
