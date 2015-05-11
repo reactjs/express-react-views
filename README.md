@@ -20,6 +20,7 @@ npm install express-react-views react
 
 var app = express();
 
+app.set('views', __dirname + '/views');
 app.set('view engine', 'jsx');
 app.engine('jsx', require('express-react-views').createEngine());
 ```
@@ -29,22 +30,20 @@ app.engine('jsx', require('express-react-views').createEngine());
 Beginning with v0.2, you can now pass options in when creating your engine.
 
 option | values | default
--------|--------|--------
-`jsx.harmony` | `true`: enable a subset of ES6 features | `false`
-`jsx.stripTypes` | `true`: strip [Flow](http://flowtype.org/) type annotations | `false`
-`jsx.extension` | any file extension with leading `.` | `".jsx"`
 `doctype` | any string that can be used as [a doctype](http://en.wikipedia.org/wiki/Document_type_declaration), this will be prepended to your document | `"<!DOCTYPE html>"`
 `beautify` | `true`: beautify markup before outputting (note, this can affect rendering due to additional whitespace) | `false`
 
 The defaults are sane, but just in case you want to change something, here's how it would look:
 
 ```js
-var options = { jsx: { harmony: true } };
+var options = { beautify: true };
 app.engine('jsx', require('express-react-views').createEngine(options));
 ```
 
 
 ### Views
+
+Under the hood, [Babel][babel] is used to compile your views into ES5 friendly code, using the default Babel options.  Only the files in your `views` directory (i.e. `app.set('views', __dirname + '/views')`) will be compiled.
 
 Your views should be node modules that export a React component. Let's assume you have this file in `views/index.jsx`:
 
@@ -159,3 +158,4 @@ All "locals" are exposed to your view in `this.props`. These should work identic
 [jade]: http://jade-lang.com/
 [ejs]: http://embeddedjs.com/
 [hbs]: https://github.com/barc/express-hbs
+[babel]: https://babeljs.io/
