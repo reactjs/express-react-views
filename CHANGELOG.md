@@ -1,3 +1,7 @@
+# v0.8 (2015-05-10)
+
+* Switch to Babel for compile pipeline
+
 # v0.7.2 (2015-04-06)
 
 * Update dependency to work with React v0.12 *and* v0.13
