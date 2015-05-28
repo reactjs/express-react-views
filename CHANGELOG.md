@@ -1,3 +1,8 @@
+# v0.8.1 (2015-05-28)
+
+* Fix bug where views weren't getting compiled on Windows
+
+
 # v0.8 (2015-05-10)
 
 * Switch to Babel for compile pipeline
