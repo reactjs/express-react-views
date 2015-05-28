@@ -26,8 +26,10 @@ function createEngine(engineOptions) {
     // Defer babel registration until the first request so we can grab the view path.
     if (!registered) {
       moduleDetectRegEx = new RegExp('^' + options.settings.views);
+      // Passing a RegExp to Babel results in an issue on Windows so we'll just
+      // pass the view path.
       require('babel/register')({
-        only: moduleDetectRegEx
+        only: options.settings.views
       });
       registered = true;
     }
