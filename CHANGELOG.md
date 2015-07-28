@@ -1,3 +1,8 @@
+# v0.8.2 (2015-07-27)
+
+* Add new `transformViews` option to make it possible to disable Babel
+
+
 # v0.8.1 (2015-05-28)
 
 * Fix bug where views weren't getting compiled on Windows
