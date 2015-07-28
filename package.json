@@ -23,8 +23,7 @@
   "dependencies": {
     "js-beautify": "^1.5.4",
     "babel": "^5.1.13",
-    "object-assign": "^2.0.0",
-    "react-tools": "^0.12.2"
+    "object-assign": "^2.0.0"
   },
   "devDependencies": {
     "react": "^0.13.2",
