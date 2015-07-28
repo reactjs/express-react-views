@@ -5,14 +5,13 @@
   "author": "Chris Johnson <tenorviol@yahoo.com>",
   "private": true,
   "scripts": {
-    "preinstall": "npm install ../../",
     "start": "browserify -t reactify --standalone main views/main.js -o public/main.js; node app.js"
   },
   "dependencies": {
     "browserify": "^8.0.3",
     "express": "^4.10.6",
-    "react": "^0.12.2",
-    "react-tools": "^0.12.2",
+    "express-react-views": "file:../../",
+    "react": "^0.13.0",
     "reactify": "^0.17.1"
   }
 }
