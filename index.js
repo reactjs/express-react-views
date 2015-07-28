@@ -13,7 +13,8 @@ var assign = require('object-assign');
 
 var DEFAULT_OPTIONS = {
   doctype: '<!DOCTYPE html>',
-  beautify: false
+  beautify: false,
+  transformViews: true,
 };
 
 function createEngine(engineOptions) {
@@ -24,8 +25,10 @@ function createEngine(engineOptions) {
 
   function renderFile(filename, options, cb) {
     // Defer babel registration until the first request so we can grab the view path.
-    if (!registered) {
+    if (!moduleDetectRegEx) {
       moduleDetectRegEx = new RegExp('^' + options.settings.views);
+    }
+    if (engineOptions.transformViews && !registered) {
       // Passing a RegExp to Babel results in an issue on Windows so we'll just
       // pass the view path.
       require('babel/register')({
