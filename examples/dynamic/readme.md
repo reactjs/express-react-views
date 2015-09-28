@@ -19,14 +19,14 @@ How it works
 ------------
 
 1. Separate the page into two templates,
-   a [static container component](views/Html.jsx)
-   and a [dynamic inner component](views/Content.jsx).
+   a [static container component](views/Html.js)
+   and a [dynamic inner component](views/Content.js).
 
 2. Use express-react-views to render and serve the container.
    Server-side data can be sent via view options.
 
 3. Make your views available client-side as javascript.
-   Here I created a [main](views/main.jsx) function for bootstrapping
+   Here I created a [main](views/main.js) function for bootstrapping
    and packaged it up using [browserify](http://browserify.org/).
 
 4. Initialize the client-side app into the dynamic component
