@@ -1,3 +1,8 @@
+# v0.9.0 (2015-10-08)
+
+* Update to React v0.14, drop support for React v0.12-0.13
+* Update other package dependencies.
+
 # v0.8.2 (2015-07-27)
 
 * Add new `transformViews` option to make it possible to disable Babel
