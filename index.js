@@ -8,6 +8,7 @@
  */
 
 var React = require('react');
+var ReactDOMServer = require('react-dom/server');
 var beautifyHTML = require('js-beautify').html;
 var assign = require('object-assign');
 
@@ -42,8 +43,9 @@ function createEngine(engineOptions) {
       var component = require(filename);
       // Transpiled ES6 may export components as { default: Component }
       component = component.default || component;
-      markup +=
-        React.renderToStaticMarkup(React.createElement(component, options));
+      markup += ReactDOMServer.renderToStaticMarkup(
+        React.createElement(component, options)
+      );
     } catch (e) {
       return cb(e);
     }

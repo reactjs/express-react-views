@@ -1,4 +1,5 @@
 var React = require('react');
+var ReactDOMServer = require('react-dom/server');
 var Content = require('./Content');
 
 module.exports = React.createClass({
@@ -7,7 +8,7 @@ module.exports = React.createClass({
     var data = this.props.data;
 
     // render the content as a dynamic react component
-    var contentHtml = React.renderToString(<Content {...data}/>);
+    var contentHtml = ReactDOMServer.renderToString(<Content {...data}/>);
 
     /**
      * re-render the content as json,
