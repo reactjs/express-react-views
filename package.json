@@ -1,6 +1,6 @@
 {
   "name": "express-react-views",
-  "version": "0.8.2",
+  "version": "0.9.0",
   "description": "This is an Express view engine which renders React components on server. It renders static markup and *does not* support mounting those views on the client.",
   "keywords": [
     "express",
