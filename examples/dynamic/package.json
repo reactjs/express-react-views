@@ -5,13 +5,13 @@
   "author": "Chris Johnson <tenorviol@yahoo.com>",
   "private": true,
   "scripts": {
-    "start": "browserify -t reactify --standalone main views/main.js -o public/main.js; node app.js"
+    "start": "browserify -t babelify --standalone main views/main.js -o public/main.js; node app.js"
   },
   "dependencies": {
+    "babelify": "^6.3.0",
     "browserify": "^8.0.3",
     "express": "^4.10.6",
     "express-react-views": "file:../../",
     "react": "^0.13.0",
-    "reactify": "^0.17.1"
   }
 }
