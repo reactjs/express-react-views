@@ -16,6 +16,7 @@ var DEFAULT_OPTIONS = {
   doctype: '<!DOCTYPE html>',
   beautify: false,
   transformViews: true,
+  checksum: false
 };
 
 function createEngine(engineOptions) {
@@ -25,6 +26,10 @@ function createEngine(engineOptions) {
   engineOptions = assign({}, DEFAULT_OPTIONS, engineOptions || {});
 
   function renderFile(filename, options, cb) {
+    if(typeof options.checksum === 'boolean'){
+	  engineOptions.checksum = options.checksum;
+	}
+
     // Defer babel registration until the first request so we can grab the view path.
     if (!moduleDetectRegEx) {
       moduleDetectRegEx = new RegExp('^' + options.settings.views);
@@ -43,10 +48,19 @@ function createEngine(engineOptions) {
       var component = require(filename);
       // Transpiled ES6 may export components as { default: Component }
       component = component.default || component;
-      markup += ReactDOMServer.renderToStaticMarkup(
-        React.createElement(component, options)
-      );
+
+       // support option to add data-react-checksum for client side
+       if(engineOptions.checksum === true){
+            markup += ReactDOMServer.renderToString(
+	        React.createElement(component, options)
+	    );
+        }else{
+            markup += ReactDOMServer.renderToStaticMarkup(
+                React.createElement(component, options)
+            );
+        }
     } catch (e) {
+      //console.log(e);
       return cb(e);
     }
 
@@ -64,7 +78,7 @@ function createEngine(engineOptions) {
         }
       });
     }
-
+    
     cb(null, markup);
   }
 
