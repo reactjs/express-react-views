@@ -34,6 +34,7 @@ option | values | default
 `doctype` | any string that can be used as [a doctype](http://en.wikipedia.org/wiki/Document_type_declaration), this will be prepended to your document | `"<!DOCTYPE html>"`
 `beautify` | `true`: beautify markup before outputting (note, this can affect rendering due to additional whitespace) | `false`
 `transformViews` | `true`: use `babel` to apply JSX, ESNext transforms to views.<br>**Note:** if already using `babel/register` in your project, you should set this to `false` | `true`
+`checksum` | `false`: if you set `true`, it will add new attribute `data-react-checksum` on your dom, and client side will check on init and no re-render
 
 The defaults are sane, but just in case you want to change something, here's how it would look:
 
