@@ -9,7 +9,7 @@ function countTo(n:number):string {
   return a.join(', ');
 }
 
-class Index = extends React.Component {
+class Index extends React.Component {
   render() {
     return (
       <div>
@@ -25,7 +25,7 @@ class Index = extends React.Component {
 }
 
 Index.propTypes = {
-  title: Read.PropTypes.string
+  title: React.PropTypes.string
 };
 
 module.exports = Index;

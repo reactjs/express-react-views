@@ -1,3 +1,9 @@
+# v0.10.0 (2015-10-27)
+
+* support checksum for client side.
+* fix es6 test components.
+* add checksum test for all test case.
+
 # v0.9.0 (2015-10-08)
 
 * Update to React v0.14, drop support for React v0.12-0.13

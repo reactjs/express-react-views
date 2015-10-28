@@ -8,7 +8,7 @@ function countTo(n) {
   return a.join(', ');
 }
 
-class Index = extends React.Component {
+class Index extends React.Component {
   render() {
     return (
       <div>
