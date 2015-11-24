@@ -33,7 +33,7 @@ option | values | default
 -------|--------|--------
 `doctype` | any string that can be used as [a doctype](http://en.wikipedia.org/wiki/Document_type_declaration), this will be prepended to your document | `"<!DOCTYPE html>"`
 `beautify` | `true`: beautify markup before outputting (note, this can affect rendering due to additional whitespace) | `false`
-`transformViews` | `true`: use `babel` to apply JSX, ESNext transforms to views.<br>**Note:** if already using `babel/register` in your project, you should set this to `false` | `true`
+`transformViews` | `true`: use `babel` to apply JSX, ESNext transforms to views.<br>**Note:** if already using babel to transform your project, you should set this to `false` | `true`
 
 The defaults are sane, but just in case you want to change something, here's how it would look:
 
@@ -45,7 +45,7 @@ app.engine('jsx', require('express-react-views').createEngine(options));
 
 ### Views
 
-Under the hood, [Babel][babel] is used to compile your views into ES5 friendly code, using the default Babel options.  Only the files in your `views` directory (i.e. `app.set('views', __dirname + '/views')`) will be compiled.
+Under the hood, [Babel][babel] is used to compile your views into ES5 friendly code, using the [React preset](babel-preset-react).  Only the files in your `views` directory (i.e. `app.set('views', __dirname + '/views')`) will be compiled.
 
 Your views should be node modules that export a React component. Let's assume you have this file in `views/index.jsx`:
 
@@ -161,3 +161,4 @@ All "locals" are exposed to your view in `this.props`. These should work identic
 [ejs]: http://embeddedjs.com/
 [hbs]: https://github.com/barc/express-hbs
 [babel]: https://babeljs.io/
+[babel-preset-react]: http://babeljs.io/docs/plugins/preset-react/
