@@ -22,8 +22,9 @@
     "react-dom": "^0.14.0"
   },
   "dependencies": {
+    "babel-core": "^6.2.1",
+    "babel-preset-react": "^6.1.18",
     "js-beautify": "^1.5.10",
-    "babel": "^5.8.23",
     "object-assign": "^4.0.1"
   },
   "devDependencies": {
