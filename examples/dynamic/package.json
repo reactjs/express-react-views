@@ -5,7 +5,7 @@
   "author": "Chris Johnson <tenorviol@yahoo.com>",
   "private": true,
   "scripts": {
-    "start": "browserify -t babelify --standalone main views/main.js -o public/main.js; node app.js"
+    "start": "browserify -t babelify --standalone main views/main.js -o public/main.js && node app.js"
   },
   "dependencies": {
     "babelify": "^6.3.0",
