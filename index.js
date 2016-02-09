@@ -16,6 +16,12 @@ var DEFAULT_OPTIONS = {
   doctype: '<!DOCTYPE html>',
   beautify: false,
   transformViews: true,
+  babel: {
+    presets: [
+      'react',
+      'es2015',
+    ],
+  },
 };
 
 function createEngine(engineOptions) {
@@ -32,9 +38,9 @@ function createEngine(engineOptions) {
     if (engineOptions.transformViews && !registered) {
       // Passing a RegExp to Babel results in an issue on Windows so we'll just
       // pass the view path.
-      require('babel/register')({
-        only: options.settings.views
-      });
+      require('babel-register')(
+        assign({only: options.settings.views}, engineOptions.babel)
+      );
       registered = true;
     }
 
