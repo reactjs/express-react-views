@@ -1,3 +1,9 @@
+# v0.10.0 (2016-02-08)
+
+* Update to Babel v6, using `react` and `es2015` presets by default
+* Clear view module cache on render errors so the server doesn't need to be restarted
+
+
 # v0.9.0 (2015-10-08)
 
 * Update to React v0.14, drop support for React v0.12-0.13
