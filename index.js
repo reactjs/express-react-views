@@ -54,21 +54,21 @@ function createEngine(engineOptions) {
       );
     } catch (e) {
       return cb(e);
+    } finally {
+      if (options.settings.env === 'development') {
+        // Remove all files from the module cache that are in the view folder.
+        Object.keys(require.cache).forEach(function(module) {
+          if (moduleDetectRegEx.test(require.cache[module].filename)) {
+            delete require.cache[module];
+          }
+        });
+      }
     }
 
     if (engineOptions.beautify) {
       // NOTE: This will screw up some things where whitespace is important, and be
       // subtly different than prod.
       markup = beautifyHTML(markup);
-    }
-
-    if (options.settings.env === 'development') {
-      // Remove all files from the module cache that are in the view folder.
-      Object.keys(require.cache).forEach(function(module) {
-        if (moduleDetectRegEx.test(require.cache[module].filename)) {
-          delete require.cache[module];
-        }
-      });
     }
 
     cb(null, markup);
