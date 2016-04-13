@@ -18,8 +18,8 @@
   },
   "license": "BSD-3-Clause",
   "peerDependencies": {
-    "react": "^0.14.0",
-    "react-dom": "^0.14.0"
+    "react": "^0.14.0 || ^15.0.0",
+    "react-dom": "^0.14.0 || ^15.0.0"
   },
   "dependencies": {
     "babel-preset-es2015": "^6.5.0",
@@ -29,8 +29,8 @@
     "object-assign": "^4.0.1"
   },
   "devDependencies": {
-    "react": "^0.14.0",
-    "react-dom": "^0.14.0",
+    "react": "^15.0.0",
+    "react-dom": "^15.0.0",
     "async": "^1.4.2"
   }
 }
