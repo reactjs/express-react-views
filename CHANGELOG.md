@@ -1,3 +1,8 @@
+# v0.10.1 (2016-04-14)
+
+* Add React v15 to peerDependencies
+
+
 # v0.10.0 (2016-02-08)
 
 * Update to Babel v6, using `react` and `es2015` presets by default
