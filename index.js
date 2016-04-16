@@ -33,7 +33,15 @@ function createEngine(engineOptions) {
   function renderFile(filename, options, cb) {
     // Defer babel registration until the first request so we can grab the view path.
     if (!moduleDetectRegEx) {
-      moduleDetectRegEx = new RegExp('^' + options.settings.views);
+      //on Windows, folder names may have backslashes, which are interpretted as escape sequences in regex
+      //linux folder names can also contain backslashes, so we need to escape those
+      var viewsFolder = options.settings.views;
+      var singleBackslashRegExp = new RegExp('\\\\','g'); //matches every instance of a single backslash
+      //now escape the backslashes. Double every one so that the regex doesn't interpret them as escapes
+      viewsFolder = viewsFolder.replace(singleBackslashRegExp, '\\\\');
+
+      //now create the module detection regex which includes the escaped path
+      moduleDetectRegEx = new RegExp('^' + viewsFolder);
     }
     if (engineOptions.transformViews && !registered) {
       // Passing a RegExp to Babel results in an issue on Windows so we'll just
