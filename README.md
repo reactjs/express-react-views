@@ -53,13 +53,9 @@ Your views should be node modules that export a React component. Let's assume yo
 ```js
 var React = require('react');
 
-var HelloMessage = React.createClass({
-  render: function() {
-    return <div>Hello {this.props.name}</div>;
-  }
-});
-
-module.exports = HelloMessage;
+module.exports = function(props) {
+  return <div>Hello {props.name}</div>;
+};
 ```
 
 ### Routes
@@ -90,18 +86,14 @@ Simply pass the relevant props to a layout component.
 ```js
 var React = require('react');
 
-var DefaultLayout = React.createClass({
-  render: function() {
-    return (
-      <html>
-        <head><title>{this.props.title}</title></head>
-        <body>{this.props.children}</body>
-      </html>
-    );
-  }
-});
-
-module.exports = DefaultLayout;
+module.exports = function(props) {
+  return (
+    <html>
+      <head><title>{props.title}</title></head>
+      <body>{props.children}</body>
+    </html>
+  );
+};
 ```
 
 `views/index.jsx`:
@@ -109,17 +101,13 @@ module.exports = DefaultLayout;
 var React = require('react');
 var DefaultLayout = require('./layouts/default');
 
-var HelloMessage = React.createClass({
-  render: function() {
-    return (
-      <DefaultLayout title={this.props.title}>
-        <div>Hello {this.props.name}</div>
-      </DefaultLayout>
-    );
-  }
-});
-
-module.exports = HelloMessage;
+module.exports = function(props) {
+  return (
+    <DefaultLayout title={props.title}>
+      <div>Hello {props.name}</div>
+    </DefaultLayout>
+  );
+};
 ```
 
 
