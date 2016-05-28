@@ -26,6 +26,7 @@
     "babel-preset-react": "^6.5.0",
     "babel-register": "^6.5.1",
     "js-beautify": "^1.5.10",
+    "lodash.escaperegexp": "^4.1.1",
     "object-assign": "^4.0.1"
   },
   "devDependencies": {
