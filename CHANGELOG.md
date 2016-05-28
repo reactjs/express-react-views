@@ -1,3 +1,8 @@
+# v0.10.2 (2016-05-27)
+
+* Fix bug preventing view cache from being cleared in some cases
+
+
 # v0.10.1 (2016-04-14)
 
 * Add React v15 to peerDependencies
