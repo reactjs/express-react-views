@@ -57,7 +57,7 @@ class HelloMessage extends React.Component {
   render() {
     return <div>Hello {this.props.name}</div>;
   }
-};
+}
 
 module.exports = HelloMessage;
 ```
@@ -99,7 +99,7 @@ class DefaultLayout extends React.Component {
       </html>
     );
   }
-};
+}
 
 module.exports = DefaultLayout;
 ```
@@ -117,7 +117,7 @@ class HelloMessage extends React.Component {
       </DefaultLayout>
     );
   }
-};
+}
 
 module.exports = HelloMessage;
 ```
