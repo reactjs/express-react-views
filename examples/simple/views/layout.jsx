@@ -20,7 +20,7 @@ class Layout extends React.Component {
       </html>
     );
   }
-};
+}
 
 Layout.propTypes = {
   title: React.PropTypes.string

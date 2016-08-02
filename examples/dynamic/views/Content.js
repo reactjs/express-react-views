@@ -11,7 +11,7 @@ class TodoList extends React.Component {
     };
     return <ul>{this.props.items.map(createItem)}</ul>;
   }
-};
+}
 
 class TodoApp extends React.Component {
   constructor(props) {
@@ -44,6 +44,6 @@ class TodoApp extends React.Component {
       </div>
     );
   }
-};
+}
 
 module.exports = TodoApp;

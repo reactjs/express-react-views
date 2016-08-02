@@ -23,7 +23,7 @@ class Index extends React.Component {
       </Layout>
     );
   }
-};
+}
 
 Index.propTypes = {
   title: React.PropTypes.string
