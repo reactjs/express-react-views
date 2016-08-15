@@ -53,11 +53,11 @@ Your views should be node modules that export a React component. Let's assume yo
 ```js
 var React = require('react');
 
-var HelloMessage = React.createClass({
-  render: function() {
+class HelloMessage extends React.Component {
+  render() {
     return <div>Hello {this.props.name}</div>;
   }
-});
+}
 
 module.exports = HelloMessage;
 ```
@@ -90,8 +90,8 @@ Simply pass the relevant props to a layout component.
 ```js
 var React = require('react');
 
-var DefaultLayout = React.createClass({
-  render: function() {
+class DefaultLayout extends React.Component {
+  render() {
     return (
       <html>
         <head><title>{this.props.title}</title></head>
@@ -99,7 +99,7 @@ var DefaultLayout = React.createClass({
       </html>
     );
   }
-});
+}
 
 module.exports = DefaultLayout;
 ```
@@ -109,15 +109,15 @@ module.exports = DefaultLayout;
 var React = require('react');
 var DefaultLayout = require('./layouts/default');
 
-var HelloMessage = React.createClass({
-  render: function() {
+class HelloMessage extends React.Component {
+  render() {
     return (
       <DefaultLayout title={this.props.title}>
         <div>Hello {this.props.name}</div>
       </DefaultLayout>
     );
   }
-});
+}
 
 module.exports = HelloMessage;
 ```
