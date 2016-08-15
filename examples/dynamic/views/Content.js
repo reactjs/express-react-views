@@ -1,29 +1,32 @@
 var React = require('react');
 
-var TodoList = React.createClass({
-  render: function() {
+class TodoList extends React.Component {
+  render() {
     var i = 0;
     var createItem = function(itemText) {
       return <li key={i++}>{itemText}</li>;
     };
     return <ul>{this.props.items.map(createItem)}</ul>;
   }
-});
+}
 
-var TodoApp = React.createClass({
-  getInitialState: function() {
-    return this.props;
-  },
-  onChange: function(e) {
+class TodoApp extends React.Component {
+  constructor(props) {
+    super(props);
+    this.onChange = this.onChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.state = props;
+  }
+  onChange(e) {
     this.setState({text: e.target.value});
-  },
-  handleSubmit: function(e) {
+  }
+  handleSubmit(e) {
     e.preventDefault();
     var nextItems = this.state.items.concat([this.state.text]);
     var nextText = '';
     this.setState({items: nextItems, text: nextText});
-  },
-  render: function() {
+  }
+  render() {
     return (
       <div className="container">
         <h3>TODO List</h3>
@@ -38,6 +41,6 @@ var TodoApp = React.createClass({
       </div>
     );
   }
-});
+}
 
 module.exports = TodoApp;

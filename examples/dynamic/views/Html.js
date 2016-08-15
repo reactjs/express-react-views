@@ -2,9 +2,9 @@ var React = require('react');
 var ReactDOMServer = require('react-dom/server');
 var Content = require('./Content');
 
-module.exports = React.createClass({
+class Html extends React.Component {
 
-  render: function() {
+  render() {
     var data = this.props.data;
 
     // render the content as a dynamic react component
@@ -67,4 +67,6 @@ module.exports = React.createClass({
     );
   }
 
-});
+}
+
+module.exports = Html;

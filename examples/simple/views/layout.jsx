@@ -1,11 +1,7 @@
 var React = require('react');
 
-var Layout = React.createClass({
-  propTypes: {
-    title: React.PropTypes.string
-  },
-
-  render: function() {
+class Layout extends React.Component {
+  render() {
     return (
       <html>
         <head>
@@ -24,6 +20,10 @@ var Layout = React.createClass({
       </html>
     );
   }
-});
+}
+
+Layout.propTypes = {
+  title: React.PropTypes.string
+};
 
 module.exports = Layout;
