@@ -1,9 +1,6 @@
 var React = require('react');
 
 class TodoList extends React.Component {
-  constructor(props) {
-    super(props);
-  }
   render() {
     var i = 0;
     var createItem = function(itemText) {

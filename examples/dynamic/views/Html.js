@@ -2,7 +2,7 @@ var React = require('react');
 var ReactDOMServer = require('react-dom/server');
 var Content = require('./Content');
 
-export default class Html extends React.Component {
+class Html extends React.Component {
 
   render() {
     var data = this.props.data;
@@ -68,3 +68,5 @@ export default class Html extends React.Component {
   }
 
 }
+
+module.exports = Html;
