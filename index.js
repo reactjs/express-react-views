@@ -12,6 +12,7 @@ var ReactDOMServer = require('react-dom/server');
 var beautifyHTML = require('js-beautify').html;
 var assign = require('object-assign');
 var _escaperegexp = require('lodash.escaperegexp');
+var path = require('path');
 
 var DEFAULT_OPTIONS = {
   doctype: '<!DOCTYPE html>',
@@ -34,8 +35,11 @@ function createEngine(engineOptions) {
   function renderFile(filename, options, cb) {
     // Defer babel registration until the first request so we can grab the view path.
     if (!moduleDetectRegEx) {
+      var viewDirectory = path.join(process.cwd(), options.settings.views);
       // Path could contain regexp characters so escape it first.
-      moduleDetectRegEx = new RegExp('^' + _escaperegexp(options.settings.views));
+      moduleDetectRegEx = new RegExp('^(?:' + _escaperegexp(viewDirectory) +
+				     // Add relative path for backwards compatibility
+				     '|' + _escaperegexp(options.settings.views) + ')');
     }
     if (engineOptions.transformViews && !registered) {
       // Passing a RegExp to Babel results in an issue on Windows so we'll just
