@@ -60,7 +60,7 @@ function createEngine(engineOptions) {
       if (options.settings.env === 'development') {
         // Remove all files from the module cache that are in the view folder.
         Object.keys(require.cache).forEach(function(module) {
-          if (moduleDetectRegEx.test(require.cache[module].filename)) {
+          if (module && moduleDetectRegEx.test(require.cache[module].filename)) {
             delete require.cache[module];
           }
         });
