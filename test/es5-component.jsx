@@ -1,4 +1,6 @@
 var React = require('react');
+var PropTypes = require('prop-types');
+var createClass = require('create-react-class');
 
 function countTo(n) {
   var a = [];
@@ -8,9 +10,9 @@ function countTo(n) {
   return a.join(', ');
 }
 
-var Index = React.createClass({
+var Index = createClass({
   propTypes: {
-    title: React.PropTypes.string
+    title: PropTypes.string
   },
 
   render: function() {
