@@ -1,4 +1,5 @@
 var React = require('react');
+var PropTypes = require('prop-types');
 
 class Layout extends React.Component {
   render() {
@@ -23,7 +24,7 @@ class Layout extends React.Component {
 }
 
 Layout.propTypes = {
-  title: React.PropTypes.string
+  title: PropTypes.string
 };
 
 module.exports = Layout;

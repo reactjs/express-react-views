@@ -1,4 +1,5 @@
 const React = require('react');
+const PropTypes = require('prop-types');
 
 // Contrived example to show how one might use Flow type annotations
 function countTo(n:number):string {
@@ -25,7 +26,7 @@ class Index = extends React.Component {
 }
 
 Index.propTypes = {
-  title: Read.PropTypes.string
+  title: PropTypes.string
 };
 
 module.exports = Index;
