@@ -1,3 +1,10 @@
+# Next
+* upgrade to React 16
+* remove prop-types from React main package and use `prop-types`
+* Convert React.createClass to ES6 class for Examples - dynamic
+* update test cases
+* upgrade browserify for examples
+
 # v0.10.2 (2016-05-27)
 
 * Fix bug preventing view cache from being cleared in some cases
