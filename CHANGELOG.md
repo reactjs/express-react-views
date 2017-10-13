@@ -1,3 +1,8 @@
+# v0.10.4 (2017-10-13)
+
+* Fixed bug preventing the use of arrays for the Express views setting
+
+
 # v0.10.3 (2017-10-13)
 
 * Added support for React 16
