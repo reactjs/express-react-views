@@ -1,4 +1,5 @@
 var React = require('react');
+var PropTypes = require('prop-types');
 var Layout = require('./layout');
 
 // Contrived example to show how one might use Flow type annotations
@@ -26,7 +27,7 @@ class Index extends React.Component {
 }
 
 Index.propTypes = {
-  title: React.PropTypes.string
+  title: PropTypes.string
 };
 
 module.exports = Index;
