@@ -1,3 +1,6 @@
+# Next
+* switch from babel-preset-es2015 to babel-preset-env
+
 # v0.10.4 (2017-10-13)
 
 * Fixed bug preventing the use of arrays for the Express views setting

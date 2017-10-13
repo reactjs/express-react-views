@@ -20,7 +20,11 @@ var DEFAULT_OPTIONS = {
   babel: {
     presets: [
       'react',
-      'es2015',
+      [ "env", {
+        "targets": {
+          "node": "current",
+        },
+      }],
     ],
   },
 };
