@@ -149,7 +149,7 @@ All "locals" are exposed to your view in `this.props`. These should work identic
 
 ```js
 <script dangerouslySetInnerHTML={{__html: `
-  // google analtyics
+  // google analytics
   // is a common use
 `}} />
 ```
