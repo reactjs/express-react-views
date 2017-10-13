@@ -1,9 +1,8 @@
-# Next
-* upgrade to React 16
-* remove prop-types from React main package and use `prop-types`
-* Convert React.createClass to ES6 class for Examples - dynamic
-* update test cases
-* upgrade browserify for examples
+# v0.10.3 (2017-10-13)
+
+* Added support for React 16
+* Upgrade package dependencies
+
 
 # v0.10.2 (2016-05-27)
 
