@@ -5,7 +5,8 @@
   "author": "Chris Johnson <tenorviol@yahoo.com>",
   "private": true,
   "scripts": {
-    "start": "browserify -t babelify views/main.js --standalone main -o public/main.js  && node app.js"
+    "start":
+      "browserify -t babelify views/main.js --standalone main -o public/main.js  && node app.js"
   },
   "dependencies": {
     "babel-preset-env": "^1.6.0",

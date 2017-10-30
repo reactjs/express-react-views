@@ -20,11 +20,14 @@ var DEFAULT_OPTIONS = {
   babel: {
     presets: [
       'react',
-      [ "env", {
-        "targets": {
-          "node": "current",
+      [
+        'env',
+        {
+          targets: {
+            node: 'current',
+          },
         },
-      }],
+      ],
     ],
   },
 };
