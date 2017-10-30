@@ -9,7 +9,8 @@
     "lint": "eslint .",
     "format":
       "prettier --write *.js package.json .eslintrc.js 'examples/**/*.{js,json}' 'test/*.{js,jsx,json}'",
-    "test": "node test"
+    "test": "node test",
+    "test-on-travis": "yarn run test && yarn run lint"
   },
   "author": "Paul O’Shannessy <paul@oshannessy.com>",
   "repository": {
