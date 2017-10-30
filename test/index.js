@@ -10,9 +10,13 @@ var viewOptions = {
 
 function testComponent(path, cb) {
   var render = viewEngine.createEngine();
-  render(__dirname + '/es5-component.jsx', viewOptions, function(err, source) {
-    assert(!err);
-    assert(source.indexOf('I can count to 10:1, 2, 3, 4, 5, 6, 7, 8, 9, 10') !== -1);
+  render(path, viewOptions, function(err, source) {
+    assert(!err, `Rendering ${path}: Did not throw`);
+    assert.equal(
+      source,
+      '<!DOCTYPE html><div><h1></h1><p>Welcome to </p><p>I can count to 10:1, 2, 3, 4, 5, 6, 7, 8, 9, 10</p></div>',
+      `Rendering ${path}: generated expected content`
+    );
     cb();
   });
 }
