@@ -1,0 +1,8 @@
+language: node_js
+cache: yarn
+node_js:
+  - 4
+  - 6
+  - 8
+script:
+  - yarn run test-on-travis
