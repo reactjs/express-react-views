@@ -4,8 +4,8 @@ var viewEngine = require('..');
 var viewOptions = {
   settings: {
     env: 'development',
-    views: __dirname
-  }
+    views: __dirname,
+  },
 };
 
 function testComponent(path, cb) {
@@ -21,18 +21,20 @@ function testComponent(path, cb) {
   });
 }
 
-async.series([
-  function testES5Module(next) {
-    testComponent(__dirname + '/es5-component.jsx', next);
-  },
-  function testES6Module(next) {
-    testComponent(__dirname + '/es6-component.jsx', next);
-  },
-  function testES6FlowModule(next) {
-    testComponent(__dirname + '/es6-flow-component.jsx', next);
+async.series(
+  [
+    function testES5Module(next) {
+      testComponent(__dirname + '/es5-component.jsx', next);
+    },
+    function testES6Module(next) {
+      testComponent(__dirname + '/es6-component.jsx', next);
+    },
+    function testES6FlowModule(next) {
+      testComponent(__dirname + '/es6-flow-component.jsx', next);
+    },
+  ],
+  function done() {
+    console.log('All tests pass!');
+    process.exit(0);
   }
-], function done() {
-  console.log('All tests pass!');
-  process.exit(0);
-});
-
+);

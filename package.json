@@ -1,12 +1,9 @@
 {
   "name": "express-react-views",
   "version": "0.10.4",
-  "description": "This is an Express view engine which renders React components on server. It renders static markup and *does not* support mounting those views on the client.",
-  "keywords": [
-    "express",
-    "view engine",
-    "react"
-  ],
+  "description":
+    "This is an Express view engine which renders React components on server. It renders static markup and *does not* support mounting those views on the client.",
+  "keywords": ["express", "view engine", "react"],
   "main": "index.js",
   "scripts": {
     "lint": "eslint .",

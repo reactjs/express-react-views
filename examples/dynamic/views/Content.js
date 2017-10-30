@@ -33,10 +33,18 @@ class TodoApp extends React.Component {
         <TodoList items={this.state.items} />
         <form className="form-inline" onSubmit={this.handleSubmit}>
           <div className="form-group">
-            <input type="text" className="form-control" placeholder="Write task" onChange={this.onChange} value={this.state.text} />
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Write task"
+              onChange={this.onChange}
+              value={this.state.text}
+            />
             &nbsp;
           </div>
-          <button className="btn btn-primary">{'Add #' + (this.state.items.length + 1)}</button>
+          <button className="btn btn-primary">
+            {'Add #' + (this.state.items.length + 1)}
+          </button>
         </form>
       </div>
     );
