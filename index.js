@@ -18,10 +18,7 @@ var DEFAULT_OPTIONS = {
   beautify: false,
   transformViews: true,
   babel: {
-    presets: [
-      'react',
-      'es2015',
-    ],
+    presets: ['react', 'es2015'],
   },
 };
 
@@ -35,14 +32,15 @@ function createEngine(engineOptions) {
     // Defer babel registration until the first request so we can grab the view path.
     if (!moduleDetectRegEx) {
       // Path could contain regexp characters so escape it first.
-      // options.settings.views could be a single string or an array      
+      // options.settings.views could be a single string or an array
       moduleDetectRegEx = new RegExp(
-        [].concat(options.settings.views)
-        .map(viewPath => '^' + _escaperegexp(viewPath))
-        .join('|')
-      );    
+        []
+          .concat(options.settings.views)
+          .map(viewPath => '^' + _escaperegexp(viewPath))
+          .join('|')
+      );
     }
-    
+
     if (engineOptions.transformViews && !registered) {
       // Passing a RegExp to Babel results in an issue on Windows so we'll just
       // pass the view path.
