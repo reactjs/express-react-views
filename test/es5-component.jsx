@@ -4,7 +4,7 @@ var createClass = require('create-react-class');
 
 function countTo(n) {
   var a = [];
-  for (var i = 0; i < n; i++ ) {
+  for (var i = 0; i < n; i++) {
     a.push(i + 1);
   }
   return a.join(', ');
@@ -12,7 +12,7 @@ function countTo(n) {
 
 var Index = createClass({
   propTypes: {
-    title: PropTypes.string
+    title: PropTypes.string,
   },
 
   render: function() {
@@ -26,7 +26,7 @@ var Index = createClass({
         </p>
       </div>
     );
-  }
+  },
 });
 
 module.exports = Index;

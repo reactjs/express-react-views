@@ -3,7 +3,7 @@ const PropTypes = require('prop-types');
 
 function countTo(n) {
   var a = [];
-  for (var i = 0; i < n; i++ ) {
+  for (var i = 0; i < n; i++) {
     a.push(i + 1);
   }
   return a.join(', ');
@@ -25,7 +25,7 @@ class Index extends React.Component {
 }
 
 Index.propTypes = {
-  title: PropTypes.string
+  title: PropTypes.string,
 };
 
 module.exports = Index;

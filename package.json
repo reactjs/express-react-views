@@ -1,15 +1,16 @@
 {
   "name": "express-react-views",
   "version": "0.10.4",
-  "description": "This is an Express view engine which renders React components on server. It renders static markup and *does not* support mounting those views on the client.",
-  "keywords": [
-    "express",
-    "view engine",
-    "react"
-  ],
+  "description":
+    "This is an Express view engine which renders React components on server. It renders static markup and *does not* support mounting those views on the client.",
+  "keywords": ["express", "view engine", "react"],
   "main": "index.js",
   "scripts": {
-    "test": "node test"
+    "lint": "eslint --ext=js,jsx .",
+    "format":
+      "prettier --write *.js package.json .eslintrc.js 'examples/**/*.{js,jsx,json}' 'test/*.{js,jsx,json}'",
+    "test": "node test",
+    "test-on-travis": "yarn run test && yarn run lint"
   },
   "author": "Paul O’Shannessy <paul@oshannessy.com>",
   "repository": {
@@ -31,7 +32,11 @@
   },
   "devDependencies": {
     "async": "^2.4.0",
+    "babel-eslint": "^8.0.1",
     "create-react-class": "^15.5.3",
+    "eslint": "^4.10.0",
+    "eslint-plugin-prettier": "^2.3.1",
+    "prettier": "^1.7.4",
     "prop-types": "^15.5.10",
     "react": "^16.0.0",
     "react-dom": "^16.0.0"
