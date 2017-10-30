@@ -1,5 +1,11 @@
 module.exports = {
-  parserOptions: {ecmaVersion: 6},
+  parser: 'babel-eslint',
+  parserOptions: {
+    ecmaVersion: 6,
+    ecmaFeatures: {
+      jsx: true,
+    },
+  },
   plugins: ['prettier'],
   rules: {
     'prettier/prettier': 'error',
