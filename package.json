@@ -6,9 +6,9 @@
   "keywords": ["express", "view engine", "react"],
   "main": "index.js",
   "scripts": {
-    "lint": "eslint .",
+    "lint": "eslint --ext=js,jsx .",
     "format":
-      "prettier --write *.js package.json .eslintrc.js 'examples/**/*.{js,json}' 'test/*.{js,jsx,json}'",
+      "prettier --write *.js package.json .eslintrc.js 'examples/**/*.{js,jsx,json}' 'test/*.{js,jsx,json}'",
     "test": "node test",
     "test-on-travis": "yarn run test && yarn run lint"
   },
@@ -32,6 +32,7 @@
   },
   "devDependencies": {
     "async": "^2.4.0",
+    "babel-eslint": "^8.0.1",
     "create-react-class": "^15.5.3",
     "eslint": "^4.10.0",
     "eslint-plugin-prettier": "^2.3.1",
