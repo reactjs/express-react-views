@@ -34,7 +34,7 @@ option | values | default
 `doctype` | any string that can be used as [a doctype](http://en.wikipedia.org/wiki/Document_type_declaration), this will be prepended to your document | `"<!DOCTYPE html>"`
 `beautify` | `true`: beautify markup before outputting (note, this can affect rendering due to additional whitespace) | `false`
 `transformViews` | `true`: use `babel` to apply JSX, ESNext transforms to views.<br>**Note:** if already using `babel-register` in your project, you should set this to `false` | `true`
-`babel` | any object containing valid Babel options<br>**Note:** does not merge with defaults | `{presets: ['react', 'es2015']}`
+`babel` | any object containing valid Babel options<br>**Note:** does not merge with defaults | `{presets: ['react', [ 'env', {'targets': {'node': 'current'}}]]}`
 
 The defaults are sane, but just in case you want to change something, here's how it would look:
 
@@ -46,7 +46,7 @@ app.engine('jsx', require('express-react-views').createEngine(options));
 
 ### Views
 
-Under the hood, [Babel][babel] is used to compile your views into ES5 friendly code, using the [react][babel-preset-react] and [es2015][babel-preset-es2015] presets by default. Only the files in your `views` directory (i.e. `app.set('views', __dirname + '/views')`) will be compiled.
+Under the hood, [Babel][babel] is used to compile your views to code compatible with your current node version, using the [react][babel-preset-react] and [env][babel-preset-env] presets by default. Only the files in your `views` directory (i.e. `app.set('views', __dirname + '/views')`) will be compiled.
 
 Your views should be node modules that export a React component. Let's assume you have this file in `views/index.jsx`:
 
@@ -149,12 +149,13 @@ All "locals" are exposed to your view in `this.props`. These should work identic
 
 ```js
 <script dangerouslySetInnerHTML={{__html: `
-  // google analytics
+  // Google Analytics
   // is a common use
 `}} />
 ```
 
 * It's not possible to specify a doctype in JSX. You can override the default HTML5 doctype in the options.
+
 
 [express]: http://expressjs.com/
 [react]: http://facebook.github.io/react/
@@ -163,4 +164,4 @@ All "locals" are exposed to your view in `this.props`. These should work identic
 [hbs]: https://github.com/barc/express-hbs
 [babel]: https://babeljs.io/
 [babel-preset-react]: https://babeljs.io/docs/plugins/preset-react/
-[babel-preset-es2015]: https://babeljs.io/docs/plugins/preset-es2015/
+[babel-preset-env]: https://babeljs.io/docs/plugins/preset-env/

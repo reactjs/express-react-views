@@ -18,7 +18,17 @@ var DEFAULT_OPTIONS = {
   beautify: false,
   transformViews: true,
   babel: {
-    presets: ['react', 'es2015'],
+    presets: [
+      'react',
+      [
+        'env',
+        {
+          targets: {
+            node: 'current',
+          },
+        },
+      ],
+    ],
   },
 };
 
