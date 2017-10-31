@@ -156,6 +156,9 @@ All "locals" are exposed to your view in `this.props`. These should work identic
 
 * It's not possible to specify a doctype in JSX. You can override the default HTML5 doctype in the options.
 
+## Contributors
+* [Paul O’Shannessy][zpao] (Author)
+* [Venkat Reddy][svenkatreddy]
 
 [express]: http://expressjs.com/
 [react]: http://facebook.github.io/react/
@@ -165,3 +168,5 @@ All "locals" are exposed to your view in `this.props`. These should work identic
 [babel]: https://babeljs.io/
 [babel-preset-react]: https://babeljs.io/docs/plugins/preset-react/
 [babel-preset-env]: https://babeljs.io/docs/plugins/preset-env/
+[zpao]: https://github.com/zpao
+[svenkatreddy]: https://github.com/svenkatreddy
