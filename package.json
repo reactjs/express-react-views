@@ -40,5 +40,13 @@
     "prop-types": "^15.5.10",
     "react": "^16.0.0",
     "react-dom": "^16.0.0"
-  }
+  },
+  "files": [
+    "CHANGELOG.md",
+    "index.js",
+    "LICENSE",
+    "package.json",
+    "PATENTS",
+    "README.md"
+  ]
 }
