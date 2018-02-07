@@ -33,15 +33,15 @@
     "object-assign": "^4.1.1"
   },
   "devDependencies": {
-    "async": "^2.4.0",
-    "babel-eslint": "^8.0.1",
-    "create-react-class": "^15.5.3",
-    "eslint": "^4.10.0",
-    "eslint-plugin-prettier": "^2.3.1",
-    "prettier": "^1.7.4",
-    "prop-types": "^15.5.10",
-    "react": "^16.0.0",
-    "react-dom": "^16.0.0"
+    "async": "^2.6.0",
+    "babel-eslint": "^8.2.1",
+    "create-react-class": "^15.6.3",
+    "eslint": "^4.17.0",
+    "eslint-plugin-prettier": "^2.6.0",
+    "prettier": "^1.10.2",
+    "prop-types": "^15.6.0",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0"
   },
   "files": [
     "CHANGELOG.md",
