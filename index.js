@@ -19,9 +19,9 @@ var DEFAULT_OPTIONS = {
   transformViews: true,
   babel: {
     presets: [
-      'react',
+      '@babel/preset-react',
       [
-        'env',
+        '@babel/preset-env',
         {
           targets: {
             node: 'current',
@@ -29,6 +29,7 @@ var DEFAULT_OPTIONS = {
         },
       ],
     ],
+    plugins: ['@babel/transform-flow-strip-types'],
   },
 };
 
@@ -54,8 +55,8 @@ function createEngine(engineOptions) {
     if (engineOptions.transformViews && !registered) {
       // Passing a RegExp to Babel results in an issue on Windows so we'll just
       // pass the view path.
-      require('babel-register')(
-        assign({only: options.settings.views}, engineOptions.babel)
+      require('@babel/register')(
+        assign({only: [].concat(options.settings.views)}, engineOptions.babel)
       );
       registered = true;
     }
