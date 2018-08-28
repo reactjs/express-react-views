@@ -1,3 +1,7 @@
+# next version
+
+* update packages (address React vulnerability with server rendered apps) 
+
 # v0.10.5 (2018-01-15)
 
 * Switch from babel-preset-es2015 to babel-preset-env
