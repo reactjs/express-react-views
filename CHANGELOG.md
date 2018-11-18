@@ -1,3 +1,8 @@
+# v0.11.0 (2018-11-18)
+
+* Update to Babel v7
+
+
 # v0.10.5 (2018-01-15)
 
 * Switch from babel-preset-es2015 to babel-preset-env
