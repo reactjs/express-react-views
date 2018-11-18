@@ -11,19 +11,17 @@ function countTo(n: number): string {
   return a.join(', ');
 }
 
-class Index extends React.Component {
-  render() {
-    return (
-      <Layout title={this.props.title}>
-        <h1>{this.props.title}</h1>
-        <p>Welcome to {this.props.title}</p>
-        <p>
-          I can count to 10:
-          {countTo(10)}
-        </p>
-      </Layout>
-    );
-  }
+function Index(props) {
+  return (
+    <Layout title={props.title}>
+      <h1>{props.title}</h1>
+      <p>Welcome to {props.title}</p>
+      <p>
+        I can count to 10:
+        {countTo(10)}
+      </p>
+    </Layout>
+  );
 }
 
 Index.propTypes = {
