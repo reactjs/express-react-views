@@ -2,8 +2,7 @@
 
 This is an [Express][express] view engine which renders [React][react] components on server. It renders static markup and *does not* support mounting those views on the client.
 
-This is intended to be used as a replacement for existing server-side view solutions, like [jade][jade], [ejs][ejs], or [handlebars][hbs].
-
+This is intended to be used as a replacement for existing server-side view solutions, like [pug][pug], [ejs][ejs], or [handlebars][hbs].
 
 ## Usage
 
@@ -13,12 +12,12 @@ npm install express-react-views react react-dom
 
 **Note:** You must explicitly install `react` as a dependency. Starting in v0.5, `react` is a peer dependency here. This is to avoid issues that may come when using incompatible versions.
 
-### Add it to your app.
+### Add it to your app
 
 ```js
 // app.js
 
-var app = express();
+const app = express();
 
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jsx');
@@ -39,10 +38,9 @@ option | values | default
 The defaults are sane, but just in case you want to change something, here's how it would look:
 
 ```js
-var options = { beautify: true };
+const options = { beautify: true };
 app.engine('jsx', require('express-react-views').createEngine(options));
 ```
-
 
 ### Views
 
@@ -51,15 +49,11 @@ Under the hood, [Babel][babel] is used to compile your views to code compatible 
 Your views should be node modules that export a React component. Let's assume you have this file in `views/index.jsx`:
 
 ```js
-var React = require('react');
+const React = require('react');
 
-class HelloMessage extends React.Component {
-  render() {
-    return <div>Hello {this.props.name}</div>;
-  }
+module.exports = function HelloMessage() {
+  return <div>Hello {this.props.name}</div>;
 }
-
-module.exports = HelloMessage;
 ```
 
 ### Routes
@@ -75,7 +69,7 @@ app.get('/', require('./routes').index);
 ```js
 // routes/index.js
 
-exports.index = function(req, res){
+exports.index = function (req, res){
   res.render('index', { name: 'John' });
 };
 ```
@@ -87,41 +81,34 @@ exports.index = function(req, res){
 Simply pass the relevant props to a layout component.
 
 `views/layouts/default.jsx`:
+
 ```js
-var React = require('react');
+const React = require('react');
 
-class DefaultLayout extends React.Component {
-  render() {
-    return (
-      <html>
-        <head><title>{this.props.title}</title></head>
-        <body>{this.props.children}</body>
-      </html>
-    );
-  }
+module.exports = function DefaultLayout() {
+  return (
+    <html>
+      <head><title>{this.props.title}</title></head>
+      <body>{this.props.children}</body>
+    </html>
+  );
 }
-
-module.exports = DefaultLayout;
 ```
 
 `views/index.jsx`:
+
 ```js
-var React = require('react');
-var DefaultLayout = require('./layouts/default');
+const React = require('react');
+const DefaultLayout = require('./layouts/default');
 
-class HelloMessage extends React.Component {
-  render() {
-    return (
-      <DefaultLayout title={this.props.title}>
-        <div>Hello {this.props.name}</div>
-      </DefaultLayout>
-    );
-  }
+module.exports = function HelloMessage() {
+  return (
+    <DefaultLayout title={this.props.title}>
+      <div>Hello {this.props.name}</div>
+    </DefaultLayout>
+  );
 }
-
-module.exports = HelloMessage;
 ```
-
 
 ## Questions
 
@@ -140,7 +127,6 @@ I know you're used to registering helpers with your view helper (`hbs.registerHe
 
 All "locals" are exposed to your view in `this.props`. These should work identically to other view engines, with the exception of how they are exposed. Using `this.props` follows the pattern of passing data into a React component, which is why we do it that way. Remember, as with other engines, rendering is synchronous. If you have database access or other async operations, they should be done in your routes.
 
-
 ## Caveats
 
 * I'm saying it again to avoid confusion: this does not do anything with React in the browser. This is *only* a solution for server-side rendering.
@@ -157,14 +143,15 @@ All "locals" are exposed to your view in `this.props`. These should work identic
 * It's not possible to specify a doctype in JSX. You can override the default HTML5 doctype in the options.
 
 ## Contributors
+
 * [Paul O’Shannessy][zpao] (Author)
 * [Venkat Reddy][svenkatreddy]
 
-[express]: http://expressjs.com/
-[react]: http://facebook.github.io/react/
-[jade]: http://jade-lang.com/
-[ejs]: http://embeddedjs.com/
-[hbs]: https://github.com/barc/express-hbs
+[express]: https://expressjs.com/
+[react]: https://reactjs.org/
+[pug]: https://pugjs.org/
+[ejs]: https://ejs.co/
+[hbs]: https://github.com/pillarjs/hbs
 [babel]: https://babeljs.io/
 [babel-preset-react]: https://babeljs.io/docs/plugins/preset-react/
 [babel-preset-env]: https://babeljs.io/docs/plugins/preset-env/
