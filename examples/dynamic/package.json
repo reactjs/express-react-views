@@ -11,7 +11,7 @@
   "dependencies": {
     "@babel/preset-env": "^7.0.0",
     "@babel/preset-react": "^7.0.0",
-    "babelify": "^7.3.0",
+    "babelify": "^10.0.0",
     "browserify": "^14.3.0",
     "express": "^4.15.3",
     "express-react-views": "file:../../",
