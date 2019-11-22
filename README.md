@@ -155,10 +155,10 @@ All "locals" are exposed to your view in `this.props`. These should work identic
 * [Venkat Reddy][svenkatreddy]
 
 [express]: http://expressjs.com/
-[react]: http://facebook.github.io/react/
+[react]: https://reactjs.org/
 [jade]: http://jade-lang.com/
-[ejs]: http://embeddedjs.com/
-[hbs]: https://github.com/barc/express-hbs
+[ejs]: https://ejs.co/
+[hbs]: https://github.com/pillarjs/hbs
 [babel]: https://babeljs.io/
 [babel-preset-react]: https://babeljs.io/docs/plugins/preset-react/
 [babel-preset-env]: https://babeljs.io/docs/plugins/preset-env/
