@@ -1,0 +1,26 @@
+{
+  "name": "nodejs-customer-review-app",
+  "version": "1.0.0",
+  "description": "Customer reviews taking and showing web application made using node js,express js and mongo db database",
+  "main": "app.js",
+  "scripts": {
+    "test": "npm start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tush-tr/nodejs-customer-review-app.git"
+  },
+  "author": "Tushar Rajput",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tush-tr/nodejs-customer-review-app/issues"
+  },
+  "homepage": "https://github.com/tush-tr/nodejs-customer-review-app#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-react-views": "^0.11.0",
+    "mongoose": "^5.11.8",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1"
+  }
+}
