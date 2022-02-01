@@ -4,6 +4,14 @@ This is an [Express][express] view engine which renders [React][react] component
 
 This is intended to be used as a replacement for existing server-side view solutions, like [jade][jade], [ejs][ejs], or [handlebars][hbs].
 
+<hr>
+
+## Deprecated
+
+This package is no longer maintained. There are better options, though not all work with Express. I recommend [Next.js](https://nextjs.org/) or [Remix](https://remix.run/).
+
+<hr>
+
 
 ## Usage
 
