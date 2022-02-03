@@ -1,0 +1,48 @@
+/* Default */
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+/* Form */
+form{
+    border: 2px solid red;
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 10px;
+}
+.components{
+    margin: 10px 10px;
+}
+input{
+    background-color: cornsilk;
+}
+textarea{
+    background-color: cornsilk;
+
+}
+.btn{
+    padding: 6px 10px;
+    background-color: black;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Index */
+.firstheading{
+    text-align: center;
+    background-color: red;
+    color: white;
+    width: 100%;
+}
+/* Responce */
+
+/* reviews */
+
+/* submitted */
